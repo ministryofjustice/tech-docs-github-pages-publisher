@@ -23,7 +23,7 @@ RUN mv /usr/local/bundle/gems/govuk_tech_docs-2.0.12/lib/assets/javascripts/_mod
 # Stash a copy of the config.rb, Gemfile and Gemfile.lock We will need these
 # later, because documentation repos won't have them.
 RUN mkdir /stashed-files
-COPY config.rb Gemfile Gemfile.lock /stashed-files
+COPY config.rb Gemfile Gemfile.lock /stashed-files/
 
 RUN mkdir /publishing-scripts
 COPY publishing-scripts/* /publishing-scripts/
