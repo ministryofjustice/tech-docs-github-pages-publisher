@@ -22,9 +22,15 @@ compile_html() {
 }
 
 check_for_broken_links() {
+  # The site will usually have links to /[repo name] which will work when it's
+  # hosted on github pages, but not in the local HTML files. So, we need to
+  # exclude that string from the link checker.
+  local readonly site_root=$(grep service_link config/tech-docs.yml | sed 's/service_link: //')
+
   bundle exec htmlproofer \
     --http-status-ignore 429 \
     --allow-hash-href \
+    --url-ignore ${site_root} \
     ./docs
 }
 
