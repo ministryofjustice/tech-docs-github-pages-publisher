@@ -6,6 +6,9 @@
 set -euo pipefail
 
 main() {
+  # Restore the stashed config.rb Gemfile and Gemfile.lock
+  cp /stashed-files/* .
+
   compile_html
   check_for_broken_links
   set_git_credentials
@@ -14,9 +17,6 @@ main() {
 }
 
 compile_html() {
-  # Restore the stashed config.rb Gemfile and Gemfile.lock
-  cp /stashed-files/* .
-
   bundle exec middleman build --build-dir docs --relative-links
   touch docs/.nojekyll
 }
