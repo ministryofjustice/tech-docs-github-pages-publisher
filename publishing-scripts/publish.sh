@@ -7,6 +7,7 @@ set -euo pipefail
 
 main() {
   compile_html
+  check_for_broken_links
   set_git_credentials
   git_add_docs
   git_push
@@ -19,6 +20,16 @@ compile_html() {
   bundle exec middleman build --build-dir docs --relative-links
   touch docs/.nojekyll
 }
+
+check_for_broken_links() {
+  bundle exec htmlproofer \
+    --http-status-ignore 429 \
+    --allow-hash-href \
+    ./docs
+}
+
+bundle exec htmlproofer 2>&1 --http-status-ignore 429 --allow-hash-href ./docs
+
 
 set_git_credentials() {
   git config --global user.email "tools@digital.justice.gov.uk"
