@@ -28,9 +28,6 @@ check_for_broken_links() {
     ./docs
 }
 
-bundle exec htmlproofer 2>&1 --http-status-ignore 429 --allow-hash-href ./docs
-
-
 set_git_credentials() {
   git config --global user.email "tools@digital.justice.gov.uk"
   git config --global user.name "Github Action"
