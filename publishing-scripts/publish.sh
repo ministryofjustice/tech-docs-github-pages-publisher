@@ -13,9 +13,11 @@ main() {
 
   compile_html
   check_for_broken_links
-  set_git_credentials
-  git_add_docs
-  git_push
+  if [ "${COMMIT_CHANGES}" == "yes" ]; then
+    set_git_credentials
+    git_add_docs
+    git_push
+  fi
 }
 
 compile_html() {
@@ -74,5 +76,7 @@ git_add_docs() {
 git_push() {
   git push origin gh-pages --force
 }
+
+COMMIT_CHANGES=${1:-yes} # pass anything except "yes" to skip changes to the repo
 
 main
