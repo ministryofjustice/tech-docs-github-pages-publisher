@@ -29,6 +29,7 @@ check_for_broken_links() {
     --http-status-ignore 429 \
     --allow-hash-href \
     --url-ignore "$(site_root)" \
+    --url-swap "$(url_swap):" \
     ./docs
 }
 
@@ -37,6 +38,22 @@ check_for_broken_links() {
 # exclude that string from the link checker.
 site_root() {
   grep service_link ${CONFIG_FILE} | sed 's/service_link: //'
+}
+
+# Convert the `host` value from `config/tech-docs.yml` to the form required in
+# the --url-swap command-line parameter to htmlproofer
+#
+# e.g. https://ministryofjustice.github.io/modernisation-platform
+#   => https?\:\/\/ministryofjustice\.github\.io\/modernisation-platform
+#
+# This is to prevent the link-checker from complaining about any links to pages
+# which aren't yet published in the live version of the documentation website.
+url_swap() {
+  grep ^host: ${CONFIG_FILE} \
+    | sed 's/host: //' \
+    | sed 's/^http.*:/https\?\\:/' \
+    | sed 's/\./\\./g' \
+    | sed 's/\//\\\//g'
 }
 
 set_git_credentials() {
