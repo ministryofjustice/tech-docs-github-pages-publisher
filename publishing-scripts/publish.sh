@@ -5,6 +5,12 @@
 
 set -euo pipefail
 
+# There is a `View source` link on every page, which will be broken for any
+# files that have not yet been merged into the default branch of the
+# documentation repo. This regexp lets us ignore any links to such files, so
+# that the link-checker doesn't complain.
+MOJ_GITHUB=/https...github.com.ministryofjustice.*html.md.erb/
+
 CONFIG_FILE=config/tech-docs.yml
 
 main() {
@@ -30,11 +36,10 @@ compile_html() {
 }
 
 check_for_broken_links() {
-
   bundle exec htmlproofer \
     --http-status-ignore 429 \
     --allow-hash-href \
-    --url-ignore "$(site_root)" \
+    --url-ignore "${MOJ_GITHUB},$(site_root)" \
     --url-swap "$(url_swap):" \
     ./docs
 }
