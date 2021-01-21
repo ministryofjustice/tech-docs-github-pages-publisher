@@ -37,7 +37,7 @@ check_for_broken_links() {
 # hosted on github pages, but not in the local HTML files. So, we need to
 # exclude that string from the link checker.
 site_root() {
-  grep service_link ${CONFIG_FILE} | sed 's/service_link: //'
+  grep ^service_link: ${CONFIG_FILE} | sed 's/service_link: //'
 }
 
 # Convert the `host` value from `config/tech-docs.yml` to the form required in
