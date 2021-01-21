@@ -5,15 +5,7 @@
 
 set -euo pipefail
 
-main() {
-  preview
-}
+# Restore the stashed config.rb Gemfile and Gemfile.lock
+cp /stashed-files/* .
 
-preview() {
-  # Restore the stashed config.rb Gemfile and Gemfile.lock
-  cp /stashed-files/* .
-
-  bundle exec middleman serve
-}
-
-main
+bundle exec middleman serve
