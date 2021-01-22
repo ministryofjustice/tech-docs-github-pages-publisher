@@ -5,11 +5,17 @@
 
 set -euo pipefail
 
-# There is a `View source` link on every page, which will be broken for any
-# files that have not yet been merged into the default branch of the
-# documentation repo. This regexp lets us ignore any links to such files, so
-# that the link-checker doesn't complain.
-MOJ_GITHUB=/https...github.com.ministryofjustice.*html.md.erb/
+# There are a couple of cases where links will appear to be broken:
+#
+# 1. There is a `View source` link on every page, which will be broken for any
+#    files that have not yet been merged into the default branch of the
+#    documentation repo.
+# 2. If the documentation includes a link to any private repositories, those
+#    links will seem to be broken, from the link-checker's POV.
+#
+# To avoid these problems, we tell the link-checker to ignore any links that
+# point to MoJ GitHub entities.
+MOJ_GITHUB=/https...github.com.ministryofjustice.*/
 
 CONFIG_FILE=config/tech-docs.yml
 
