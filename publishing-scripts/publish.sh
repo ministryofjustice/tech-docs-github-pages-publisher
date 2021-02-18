@@ -19,6 +19,8 @@ MOJ_GITHUB=/https...github.com.ministryofjustice.*/
 
 CONFIG_FILE=config/tech-docs.yml
 
+CHROME_USER_AGENT="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36"
+
 main() {
   # Restore the stashed config.rb Gemfile and Gemfile.lock
   cp /stashed-files/* .
@@ -47,6 +49,7 @@ check_for_broken_links() {
     --allow-hash-href \
     --url-ignore "${MOJ_GITHUB},$(site_root)" \
     --url-swap "$(url_swap):" \
+    --typhoeus-config "{\"headers\":{\"User-Agent\":\"${CHROME_USER_AGENT}\"}}" \
     ./docs
 }
 
