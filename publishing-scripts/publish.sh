@@ -45,7 +45,7 @@ compile_html() {
 
 check_for_broken_links() {
   bundle exec htmlproofer \
-    --http-status-ignore 429 \
+    --http-status-ignore 0,429,403 \
     --allow-hash-href \
     --url-ignore "${MOJ_GITHUB},$(site_root)" \
     --url-swap "$(url_swap):" \
