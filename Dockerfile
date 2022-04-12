@@ -1,11 +1,11 @@
-FROM ruby:latest
+FROM ruby:3.1.1-alpine3.15
 
 # These are needed to support building native extensions during
 # bundle install step
 RUN apk --update add --virtual build_deps build-base git
 
-RUN addgroup -gid 1000 --system appgroup \
-  && adduser -uid 1000 --system appuser \
+RUN addgroup -g 1000 -S appgroup \
+  && adduser -u 1000 --system appuser \
   && adduser appuser appgroup \
   && gem install bundler \
   && bundle config
