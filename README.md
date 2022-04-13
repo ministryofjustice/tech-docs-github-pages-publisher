@@ -24,4 +24,5 @@ A [GitHub Action](.github/workflows/docker-hub.yml) publishes this repository Do
 ## Updating
 
 The [govuk_tech_docs](https://rubygems.org/gems/govuk_tech_docs) gem is within the Gemfile.
-Either dependabot will automatically update the Gem or a new PR with the gem updated is required.
+
+Either dependabot will automatically update the gem or a new PR with the gem updated is required.
