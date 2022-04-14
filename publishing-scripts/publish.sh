@@ -35,16 +35,18 @@ main() {
 }
 
 compile_html() {
-  # Export the ROOT_DOCPATH env. var which is required by the patched tech-docs
-  # gem code
-  export ROOT_DOCPATH=$(site_root)
+  # TODO: Delete this section in v1.6 if no reported issues in v1.5
+  # Export the ROOT_DOCPATH env. var which is required by the patched tech-docs gem code
+  # export ROOT_DOCPATH=$(site_root)
 
   bundle exec middleman build --build-dir docs --relative-links
+  
   touch docs/.nojekyll
 }
 
 check_for_broken_links() {
   bundle exec htmlproofer \
+    --log-level debug \
     --http-status-ignore 0,429,403 \
     --allow-hash-href \
     --url-ignore "${MOJ_GITHUB},$(site_root)" \
@@ -56,6 +58,9 @@ check_for_broken_links() {
 # The site will usually have links to `/[repo name]` which will work when it's
 # hosted on github pages, but not in the local HTML files. So, we need to
 # exclude that string from the link checker.
+# This will put // in front of the string for service_link in tech-docs.yml file.
+# ie if it is /#[repo name] it becomes //[repo name]
+# ie if it is /[repo name] it becomes //[repo name]
 site_root() {
   grep ^service_link: ${CONFIG_FILE} | sed 's/service_link: //'
 }

@@ -1,7 +1,6 @@
 #!/bin/sh
 
-# Allow documentation sites to preview what the site will look like when
-# published.
+# Allow documentation sites to preview what the site will look like when published.
 
 set -euo pipefail
 
