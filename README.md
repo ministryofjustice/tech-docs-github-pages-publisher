@@ -47,11 +47,16 @@ In a seperate terminal copy the webpage config and source files:
 
 docker cp config ghaction:/app/ && docker cp source ghaction:/app/ 
 
-Inside inside the Docker container: 
+Inside the Docker container run the server locally:
 
 ../publishing-scripts/preview.sh
 
+Open a browser at http://127.0.0.1:4567/
+
+Inside the Docker container run the html-proof tests locally before creating a PR:
+
 ../publishing-scripts/publish.sh
+
 
 ## CI/CD
 
