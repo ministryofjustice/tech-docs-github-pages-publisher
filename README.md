@@ -19,7 +19,7 @@ This image is used by the [MoJ Template Documentation Site](https://github.com/m
 
 ## Local development with another MoJ Documentation repository:
 
-This assumes you have Ruby and Bundler already installed on your local machine.
+This assumes you have Ruby and Bundler already installed on your local machine. See the [installation](https://tdt-documentation.london.cloudapps.digital/create_project/get_started/#get-started) setup. 
 
 Copy the config.rb file, Gemfile and Gemfile.lock to the checked out repository folder that contains the webpage data.
 
