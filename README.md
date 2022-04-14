@@ -8,14 +8,38 @@ This repository creates a Docker image and publishes the image to DockerHub.
 
 The Docker image is pulled by other repository CI/CD and combined with their source code to create documentation websites that meet government technical documents and then push the data to GH Pages.
 
-The contents of the Docker image will compile markdown files, ie .html.md.erb, into HTML and assets using the GOV.UK [Technical Documentation Template](https://tdt-documentation.london.cloudapps.digital/) / [Source code](https://github.com/alphagov/tech-docs-template).
+The contents of the Docker image will compile embedded ruby and markdown files, ie .html.md.erb, into HTML and assets using the GOV.UK [Technical Documentation Template](https://tdt-documentation.london.cloudapps.digital/) / [Source code](https://github.com/alphagov/tech-docs-template).
 
-There are two scripts within the Docker image:
+There are two scripts within the Docker image that both use the middleman gem:
 
 * [preview.sh](publishing-scripts/preview.sh) - serve the compiled HTML and assets on a localhost port - useful for previewing the site locally
-* [publish.sh](publishing-scripts/publish.sh) - compiles the docs into /docs and pushes it to the gh-pages branch, which GitHub Pages will serve
+* [publish.sh](publishing-scripts/publish.sh) - compiles the docs into a /docs folder, tests the links using htmlproofer and pushes it to the gh-pages branch via Git, which GitHub Pages will serve.
 
 This image is used by the [MoJ Template Documentation Site](https://github.com/ministryofjustice/template-documentation-site) repository for MOJ technical documentation that gets published to GitHub Pages.
+
+## Locally
+
+To run the Docker image locally for development, build the image then run the container from the repository containing the webpage data: 
+
+docker build -t gh-action -f ./Dockerfile .
+
+docker run -it --rm -v config:/app/config -v source:/app/source -p 4567:4567 --name ghaction gh-action sh ../publishing-scripts/preview.sh
+
+docker run -it --rm -v config:/app/config -v source:/app/source -p 4567:4567 --name ghaction gh-action sh ../publishing-scripts/publishing.sh
+
+or
+
+Start the Docker container:
+docker run -it --rm -v config:/app/config -v source:/app/source -p 4567:4567 --name ghaction gh-action sh 
+
+Copy over the webpage config and source files
+docker cp config ghaction:/app/ && docker cp source ghaction:/app/ 
+
+Inside inside the Docker container: 
+
+../publishing-scripts/preview.sh
+
+../publishing-scripts/publish.sh
 
 ## CI/CD
 
