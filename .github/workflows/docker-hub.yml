@@ -23,7 +23,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ministryofjustice/tech-docs-github-pages-publisher:v1.5
+          tags: ministryofjustice/tech-docs-github-pages-publisher:latest
       - name: Report failure to Slack
         if: always()
         uses: ravsamhq/notify-slack-action@v1
