@@ -19,6 +19,7 @@ COPY Gemfile Gemfile.lock ./
 
 RUN bundle install
 
+# TODO: Delete this section in v1.6 if no reported issues in v1.5
 # # patch the installed gems
 # # see: https://github.com/alphagov/tech-docs-gem/issues/191
 # COPY gem-patches/*.patch /tmp/
@@ -32,7 +33,7 @@ RUN bundle install
 # RUN mv ${SEARCH_JS} ${SEARCH_JS}.erb
 
 
-# Stash a copy of the config.rb, Gemfile and Gemfile.lock We will need these
+# Stash a copy of the config.rb, Gemfile and Gemfile.lock Middleman need these
 # later, because documentation repos won't have them.
 RUN mkdir /stashed-files
 COPY config.rb Gemfile Gemfile.lock /stashed-files/

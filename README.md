@@ -17,22 +17,34 @@ There are two scripts within the Docker image that both use the middleman gem:
 
 This image is used by the [MoJ Template Documentation Site](https://github.com/ministryofjustice/template-documentation-site) repository for MOJ technical documentation that gets published to GitHub Pages.
 
-## Locally
+## Local development with another MoJ Documentation repository:
+
+This assumes you have Ruby and Bundler already installed on your local machine.
+
+Copy the config.rb file, Gemfile and Gemfile.lock to the checked out repository folder that contains the webpage data.
+
+gem install middleman
+
+bundle exec middleman build
+
+bundle exec middleman serve
+
+Open a browser at http://127.0.0.1:4567/
+
+## Locally in Docker
 
 To run the Docker image locally for development, build the image then run the container from the repository containing the webpage data: 
 
+Build the Docker image:
+
 docker build -t gh-action -f ./Dockerfile .
 
-docker run -it --rm -v config:/app/config -v source:/app/source -p 4567:4567 --name ghaction gh-action sh ../publishing-scripts/preview.sh
-
-docker run -it --rm -v config:/app/config -v source:/app/source -p 4567:4567 --name ghaction gh-action sh ../publishing-scripts/publishing.sh
-
-or
-
 Start the Docker container:
-docker run -it --rm -v config:/app/config -v source:/app/source -p 4567:4567 --name ghaction gh-action sh 
 
-Copy over the webpage config and source files
+docker run -it --rm -p 4567:4567 --name ghaction gh-action sh 
+
+In a seperate terminal copy the webpage config and source files:
+
 docker cp config ghaction:/app/ && docker cp source ghaction:/app/ 
 
 Inside inside the Docker container: 
@@ -50,3 +62,8 @@ A [GitHub Action](.github/workflows/docker-hub.yml) publishes this repository Do
 The [govuk_tech_docs](https://rubygems.org/gems/govuk_tech_docs) gem is within the Gemfile.
 
 Either dependabot will automatically update the gem or a new PR with the gem updated is required.
+
+
+## TODO
+
+Delete the gem-patches folder and associated code in other files in release v1.6.
