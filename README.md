@@ -17,6 +17,27 @@ There are two scripts within the Docker image that both use the middleman gem:
 
 This image is used by the [MoJ Template Documentation Site](https://github.com/ministryofjustice/template-documentation-site) repository for MOJ technical documentation that gets published to GitHub Pages.
 
+## How to use tool in GH Action
+
+Example of using tech-docs-github-pages-publisher v1.5, actions/checkout@v3, and calling the publish.sh script inside Docker container.
+
+Note 'git config --global --add safe.director' is needed to circumvent a Git cve [issue](https://github.com/actions/checkout/issues/766) in checkout. 
+
+```
+jobs:
+  publish-gh-pages:
+    runs-on: ubuntu-latest
+    container:
+      image: ministryofjustice/tech-docs-github-pages-publisher:1.5
+    steps:
+      - uses: actions/checkout@v3
+      - name: Publish to gh-pages
+        run: |
+          git config --global --add safe.directory ${GITHUB_WORKSPACE}
+          /publishing-scripts/publish.sh
+```
+
+
 ## Local development with another MoJ Documentation repository:
 
 This assumes you have Ruby and Bundler already installed on your local machine. See the [installation](https://tdt-documentation.london.cloudapps.digital/create_project/get_started/#get-started) setup. 
