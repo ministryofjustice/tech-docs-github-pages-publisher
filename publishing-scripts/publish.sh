@@ -47,11 +47,11 @@ compile_html() {
 check_for_broken_links() {
   bundle exec htmlproofer \
     --log-level debug \
-    --http-status-ignore 0,429,403 \
+    --ignore-status-codes 0,429,403 \
     --allow-hash-href \
-    --url-ignore "${MOJ_GITHUB},$(site_root)" \
-    --url-swap "$(url_swap):" \
-    --typhoeus-config "{\"headers\":{\"User-Agent\":\"${CHROME_USER_AGENT}\"}}" \
+    --ignore-urls "${MOJ_GITHUB},$(site_root)" \
+    --swap-urls "$(url_swap):" \
+    --typhoeus "{\"headers\":{\"User-Agent\":\"${CHROME_USER_AGENT}\"}}" \
     ./docs
 }
 
@@ -66,7 +66,7 @@ site_root() {
 }
 
 # Convert the `host` value from `config/tech-docs.yml` to the form required in
-# the --url-swap command-line parameter to htmlproofer
+# the --swap-urls command-line parameter to htmlproofer
 #
 # e.g. https://ministryofjustice.github.io/modernisation-platform
 #   => https?\:\/\/ministryofjustice\.github\.io\/modernisation-platform
