@@ -43,11 +43,13 @@ This assumes you have Ruby and Bundler already installed on your local machine. 
 
 Copy the config.rb file, Gemfile and Gemfile.lock to the checked out repository folder that contains the webpage data.
 
+```
 gem install middleman
 
 bundle exec middleman build
 
 bundle exec middleman serve
+```
 
 Open a browser at http://127.0.0.1:4567/
 
@@ -57,25 +59,35 @@ To run the Docker image locally for development, build the image then run the co
 
 Build the Docker image:
 
+```
 docker build -t gh-action -f ./Dockerfile .
+```
 
 Start the Docker container:
 
+```
 docker run -it --rm -p 4567:4567 --name ghaction gh-action sh
+```
 
 In a seperate terminal copy the webpage config and source files:
 
+```
 docker cp config ghaction:/app/ && docker cp source ghaction:/app/
+```
 
 Inside the Docker container run the server locally:
 
+```
 ../publishing-scripts/preview.sh
+```
 
 Open a browser at http://127.0.0.1:4567/
 
 Inside the Docker container run the html-proof tests locally before creating a PR:
 
+```
 ../publishing-scripts/publish.sh
+```
 
 ## CI/CD
 
