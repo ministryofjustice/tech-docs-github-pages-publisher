@@ -21,9 +21,19 @@ This image is used by the [MoJ Template Documentation Site](https://github.com/m
 
 Example of using tech-docs-github-pages-publisher v1.5, actions/checkout@v3, and calling the publish.sh script inside Docker container.
 
-Note 'git config --global --add safe.director' is needed to circumvent a Git cve [issue](https://github.com/actions/checkout/issues/766) in checkout.
+Note 'git config --global --add safe.directory' is needed to circumvent a Git cve [issue](https://github.com/actions/checkout/issues/766) in checkout.
 
 ```
+name: Publish gh-pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+    paths-ignore:
+      - "docs/**"
+
 jobs:
   publish-gh-pages:
     runs-on: ubuntu-latest
