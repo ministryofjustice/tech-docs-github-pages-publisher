@@ -35,9 +35,6 @@ main() {
 }
 
 compile_html() {
-  # TODO: Delete this section in v1.6 if no reported issues in v1.5
-  # Export the ROOT_DOCPATH env. var which is required by the patched tech-docs gem code
-  # export ROOT_DOCPATH=$(site_root)
 
   bundle exec middleman build --build-dir docs --relative-links
   
