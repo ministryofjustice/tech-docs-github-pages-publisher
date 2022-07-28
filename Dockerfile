@@ -25,5 +25,5 @@ RUN mkdir /stashed-files
 COPY config.rb Gemfile Gemfile.lock /stashed-files/
 
 RUN mkdir /publishing-scripts
-COPY publishing-scripts/* /publishing-scripts/
+COPY scripts/* /scripts/
 
