@@ -13,9 +13,7 @@ The contents of the Docker image will compile embedded ruby and markdown files, 
 There are two scripts within the Docker image that both use the middleman gem:
 
 - [preview.sh](scripts/preview.sh) - serve the compiled HTML and assets on a localhost port - useful for previewing the site locally
-- [publish.sh](scripts/compile-and-create-artifact.sh) - compiles the HTML into a /docs folder, tests the links using htmlproofer and places the docs folder into a artifact .tar file.
-
-This image is used by the [MoJ Template Documentation Site](https://github.com/ministryofjustice/template-documentation-site) repository for MOJ technical documentation that gets published to GitHub Pages.
+- [compile-and-create-artifact.sh](scripts/compile-and-create-artifact.sh) - compiles the HTML into a /docs folder, tests the links using htmlproofer and places the docs folder into a artifact .tar file.
 
 ## How to use tool in GH Action
 
