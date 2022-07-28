@@ -42,7 +42,7 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: true
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
