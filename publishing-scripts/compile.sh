@@ -30,7 +30,6 @@ main() {
     --allow-hash-href \
     --ignore-urls "${MOJ_GITHUB},$(site_root)" \
     --swap-urls "$(url_swap):" \
-    --typhoeus "{\"headers\":{\"User-Agent\":\"${CHROME_USER_AGENT}\"}}" \
     ./docs
 }
 
