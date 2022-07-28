@@ -12,16 +12,14 @@ The contents of the Docker image will compile embedded ruby and markdown files, 
 
 There are two scripts within the Docker image that both use the middleman gem:
 
-- [preview.sh](publishing-scripts/preview.sh) - serve the compiled HTML and assets on a localhost port - useful for previewing the site locally
-- [publish.sh](publishing-scripts/publish.sh) - compiles the docs into a /docs folder, tests the links using htmlproofer and pushes it to the gh-pages branch via Git, which GitHub Pages will serve.
+- [preview.sh](scripts/preview.sh) - serve the compiled HTML and assets on a localhost port - useful for previewing the site locally
+- [compile-and-create-artifact.sh](scripts/compile-and-create-artifact.sh) - compiles the source code and places the HTML into the /docs folder, tests the links using htmlproofer and and creates a .tar artifact file that other GH Actions will serve to GitHub Pages.
 
 This image is used by the [MoJ Template Documentation Site](https://github.com/ministryofjustice/template-documentation-site) repository for MOJ technical documentation that gets published to GitHub Pages.
 
 ## How to use tool in GH Action
 
-Example of using tech-docs-github-pages-publisher v1.5, actions/checkout@v3, and calling the publish.sh script inside Docker container.
-
-Note 'git config --global --add safe.directory' is needed to circumvent a Git cve [issue](https://github.com/actions/checkout/issues/766) in checkout.
+Example of using tech-docs-github-pages-compiler. Add the following code to .github/workflows/publish-gh-pages.yml in your repository.
 
 ```
 name: Publish gh-pages
@@ -34,17 +32,47 @@ on:
     paths-ignore:
       - "docs/**"
 
+# GITHUB_TOKEN permissions to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
-  publish-gh-pages:
+  build:
     runs-on: ubuntu-latest
     container:
-      image: ministryofjustice/tech-docs-github-pages-publisher:1.5
+      image: ministryofjustice/tech-docs-github-pages-publisher:v2
     steps:
-      - uses: actions/checkout@v3
-      - name: Publish to gh-pages
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Compile Markdown to HTML and create artifact
         run: |
-          git config --global --add safe.directory ${GITHUB_WORKSPACE}
-          /publishing-scripts/publish.sh
+          /scripts/compile-and-create-artifact.sh
+      - name: Upload artifact to be published
+        uses: actions/upload-artifact@main
+        with:
+          name: github-pages
+          path: artifact.tar
+          retention-days: 1
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v1
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@main
 ```
 
 ## Local development with another MoJ Documentation repository:
@@ -88,15 +116,15 @@ docker cp config ghaction:/app/ && docker cp source ghaction:/app/
 Inside the Docker container run the server locally:
 
 ```
-../publishing-scripts/preview.sh
+../scripts/preview.sh
 ```
 
 Open a browser at http://127.0.0.1:4567/
 
-Inside the Docker container run the html-proof tests locally before creating a PR:
+Inside the Docker container run the html-proofer tests locally before creating a PR:
 
 ```
-../publishing-scripts/publish.sh
+../scripts/compile-and-create-artifact.sh
 ```
 
 ## CI/CD
