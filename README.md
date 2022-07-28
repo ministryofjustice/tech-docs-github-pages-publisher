@@ -1,8 +1,8 @@
-# Tech Docs GitHub Pages Compiler
+# Tech Docs GitHub Pages Publisher
 
-[![Releases](https://img.shields.io/github/release/ministryofjustice/tech-docs-github-pages-compiler/all.svg?style=flat-square)](https://github.com/ministryofjustice/tech-docs-github-pages-compiler/releases)
+[![Releases](https://img.shields.io/github/release/ministryofjustice/tech-docs-github-pages-publisher/all.svg?style=flat-square)](https://github.com/ministryofjustice/tech-docs-github-pages-publisher/releases)
 
-[![repo standards badge](https://img.shields.io/badge/dynamic/json?color=blue&style=for-the-badge&logo=github&label=MoJ%20Compliant&query=%24.data%5B%3F%28%40.name%20%3D%3D%20%22tech-docs-github-pages-compiler%22%29%5D.status&url=https%3A%2F%2Foperations-engineering-reports.cloud-platform.service.justice.gov.uk%2Fgithub_repositories)](https://operations-engineering-reports.cloud-platform.service.justice.gov.uk/github_repositories#tech-docs-github-pages-compiler "Link to report")
+[![repo standards badge](https://img.shields.io/badge/dynamic/json?color=blue&style=for-the-badge&logo=github&label=MoJ%20Compliant&query=%24.data%5B%3F%28%40.name%20%3D%3D%20%22tech-docs-github-pages-publisher%22%29%5D.status&url=https%3A%2F%2Foperations-engineering-reports.cloud-platform.service.justice.gov.uk%2Fgithub_repositories)](https://operations-engineering-reports.cloud-platform.service.justice.gov.uk/github_repositories#tech-docs-github-pages-publisher "Link to report")
 
 This repository creates a Docker image and publishes the image to DockerHub.
 
@@ -13,14 +13,16 @@ The contents of the Docker image will compile embedded ruby and markdown files, 
 There are two scripts within the Docker image that both use the middleman gem:
 
 - [preview.sh](scripts/preview.sh) - serve the compiled HTML and assets on a localhost port - useful for previewing the site locally
-- [compile-and-create-artifact.sh](scripts/compile-and-create-artifact.sh) - compiles the HTML into a /docs folder, tests the links using htmlproofer and places the docs folder into a artifact .tar file.
+- [compile-and-create-artifact.sh](scripts/compile-and-create-artifact.sh) - compiles the source code and places the HTML into the /docs folder, tests the links using htmlproofer and and creates a .tar artifact file that other GH Actions will serve to GitHub Pages.
+
+This image is used by the [MoJ Template Documentation Site](https://github.com/ministryofjustice/template-documentation-site) repository for MOJ technical documentation that gets published to GitHub Pages.
 
 ## How to use tool in GH Action
 
-Example of using tech-docs-github-pages-compiler. Add the following code to ```.github/workflows/publish-gh-pages.yml``` in your repository.
+Example of using tech-docs-github-pages-compiler. Add the following code to .github/workflows/publish-gh-pages.yml in your repository.
 
 ```
-name: publish-gh-pages
+name: Publish gh-pages
 
 on:
   workflow_dispatch:
@@ -45,11 +47,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ministryofjustice/tech-docs-github-pages-compiler:latest
+      image: ministryofjustice/tech-docs-github-pages-publisher:v2
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Compile Markdown to HTML and package
+      - name: Compile Markdown to HTML and create artifact
         run: |
           /scripts/compile-and-create-artifact.sh
       - name: Upload artifact to be published
@@ -119,7 +121,7 @@ Inside the Docker container run the server locally:
 
 Open a browser at http://127.0.0.1:4567/
 
-Inside the Docker container run the html-proof tests locally before creating a PR:
+Inside the Docker container run the html-proofer tests locally before creating a PR:
 
 ```
 ../scripts/compile-and-create-artifact.sh
