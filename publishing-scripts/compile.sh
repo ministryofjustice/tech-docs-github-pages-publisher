@@ -23,6 +23,8 @@ main() {
   bundle exec middleman build --build-dir docs --relative-links
   
   touch docs/.nojekyll
+  
+  tar --dereference --directory docs -cvf artifact.tar --exclude=.git --exclude=.github .
 }
 
 
