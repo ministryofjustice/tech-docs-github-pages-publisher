@@ -24,6 +24,14 @@ main() {
   
   touch docs/.nojekyll
   
+  bundle exec htmlproofer \
+    --log-level debug \
+    --ignore-status-codes 0,429,403 \
+    --allow-hash-href \
+    --ignore-urls "${MOJ_GITHUB},$(site_root)" \
+    --swap-urls "$(url_swap):" \
+    ./docs
+
   tar --dereference --directory docs -cvf artifact.tar --exclude=.git --exclude=.github .
 }
 
