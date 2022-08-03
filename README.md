@@ -17,6 +17,10 @@ There are two scripts within the Docker image that both use the middleman gem:
 
 This image is used by the [MoJ Template Documentation Site](https://github.com/ministryofjustice/template-documentation-site) repository for MOJ technical documentation that gets published to GitHub Pages.
 
+## Breaking Change in v2
+
+If you have a branch called gh-pages already rename it to gh-pages-old. In repository settings, go to Pages, copy the 'Custom domain' value, for 'Build and deployment' 'Source' change to the option 'GitHubs Actions'. Then apply the new yml code in the README.md in your CI Action that published gh-pages. If all is working can remove the gh-pages-old branch.
+
 ## How to use tool in GH Action
 
 Example of using tech-docs-github-pages-compiler. Add the following code to .github/workflows/publish-gh-pages.yml in your repository.
