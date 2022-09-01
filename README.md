@@ -19,7 +19,7 @@ This image is used by the [MoJ Template Documentation Site](https://github.com/m
 
 ## Breaking Change in v2
 
-If you have a branch called gh-pages already rename it to gh-pages-old. In repository settings, go to Pages, copy the 'Custom domain' value, for 'Build and deployment' 'Source' change to the option 'GitHubs Actions'. Then apply the new yml code in the README.md in your CI Action that published gh-pages. If all is working can remove the gh-pages-old branch.
+If you have a branch called gh-pages already rename it to gh-pages-old. In repository settings, go to Pages, copy the 'Custom domain' value, for 'Build and deployment' 'Source' change to the option 'GitHubs Actions'. Apply the yml code below to your CI Actions. If all is working can remove the gh-pages-old branch. You may need to manually run the below workflow once it is merged into main.
 
 ## How to use tool in GH Action
 
@@ -73,7 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Pages
-        uses: actions/configure-pages@v1
+        uses: actions/configure-pages@v2
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@main
