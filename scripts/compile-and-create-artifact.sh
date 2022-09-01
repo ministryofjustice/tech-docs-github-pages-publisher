@@ -20,7 +20,7 @@ main() {
   # Restore the stashed config.rb Gemfile and Gemfile.lock
   cp /stashed-files/* .
 
-  bundle exec middleman build --build-dir docs --relative-links
+  bundle exec middleman build --build-dir docs --relative-links --verbose
   
   touch docs/.nojekyll
   
