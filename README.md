@@ -140,3 +140,7 @@ A [GitHub Action](.github/workflows/docker-hub.yml) publishes this repository Do
 The [govuk_tech_docs](https://rubygems.org/gems/govuk_tech_docs) gem is within the Gemfile.
 
 Either dependabot will automatically update the gem or a new PR with the gem updated is required.
+
+## Markdown in html
+
+Markdown syntax used within compiled down html files can be found [here](https://daringfireball.net/projects/markdown/) and here [kramdown](https://kramdown.gettalong.org/syntax.html).
