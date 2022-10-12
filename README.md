@@ -17,7 +17,7 @@ This image is used by the [MoJ Template Documentation Site](https://github.com/m
 
 ## Breaking Change in v3
 
-The inputs to the htmlproofer tool have changed so that the URL checks are stricter than before. It will not check URL's that start with https://github.com/ministryofjustice ie MoJ GH Org URLs as the tool will return a failure when testing URLs to internal and private repositories.
+The inputs to the htmlproofer tool have changed so that the URL checks are stricter than before. It will not check URLs that start with https://github.com/ministryofjustice ie MoJ GH Org URLs as the tool will return a failure when testing URLs to internal and private repositories. The tool will also fail a URL test when the changes exist in a branch which have not been published to gh-pages yet. MoJ GH Org URLs will have to be manually checked.
 
 ## Breaking Change in v2
 
