@@ -2,17 +2,8 @@
 
 # Compile source markdown files into HTML in the `/docs` directory
 
+set -x
 set -euo pipefail
-
-# There are a couple of cases where links will appear to be broken:
-# 1. There is a `View source` link on every page, which will be broken for any
-#    files that have not yet been merged into the default branch of the
-#    documentation repo.
-# 2. If the documentation includes a link to any private repositories, those
-#    links will seem to be broken, from the link-checker's POV.
-# To avoid these problems, we tell the link-checker to ignore any links that
-# point to MoJ GitHub entities.
-MOJ_GITHUB=/https...github.com.ministryofjustice.*/
 
 CONFIG_FILE=config/tech-docs.yml
 
@@ -26,25 +17,14 @@ main() {
   
   bundle exec htmlproofer \
     --log-level debug \
-    --ignore-status-codes 0,429,403 \
-    --allow-hash-href \
-    --ignore-urls "${MOJ_GITHUB},$(site_root)" \
+    --allow-missing-href true \
     --swap-urls "$(url_swap):" \
+    --ignore-urls "/https...github.com.ministryofjustice.*/" \
     ./docs
 
   tar --dereference --directory docs -cvf artifact.tar --exclude=.git --exclude=.github .
 }
 
-
-# The site will usually have links to `/[repo name]` which will work when it's
-# hosted on github pages, but not in the local HTML files. So, we need to
-# exclude that string from the link checker.
-# This will put // in front of the string for service_link in tech-docs.yml file.
-# ie if it is /#[repo name] it becomes //[repo name]
-# ie if it is /[repo name] it becomes //[repo name]
-site_root() {
-  grep ^service_link: ${CONFIG_FILE} | sed 's/service_link: //'
-}
 
 # Convert the `host` value from `config/tech-docs.yml` to the form required in
 # the --swap-urls command-line parameter to htmlproofer
