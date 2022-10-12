@@ -133,7 +133,7 @@ Inside the Docker container run the html-proofer tests locally before creating a
 ../scripts/compile-and-create-artifact.sh
 ```
 
-Alternatively use the [makefile](https://github.com/ministryofjustice/tech-docs-github-pages-publisher) from the technical-guidance repository to run the Docker container locally using the `make preview` and `make check` commands
+Alternatively use the [makefile](https://github.com/ministryofjustice/technical-guidance/blob/main/makefile) from the technical-guidance repository to run the Docker container locally using the `make preview` and `make check` commands
 
 ## CI/CD
 
