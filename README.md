@@ -15,6 +15,10 @@ There are two scripts within the Docker image that both use the middleman gem:
 
 This image is used by the [MoJ Template Documentation Site](https://github.com/ministryofjustice/template-documentation-site) repository for MOJ technical documentation that gets published to GitHub Pages.
 
+## Breaking Change in v3
+
+The inputs to the htmlproofer tool have changed so that the URL checks are stricter than before. It will not check URLs that start with https://github.com/ministryofjustice ie MoJ GH Org URLs as the tool will return a failure when testing URLs to internal and private repositories. The tool will also fail a URL test when the changes exist in a branch which have not been published to gh-pages yet. MoJ GH Org URLs will have to be manually checked.
+
 ## Breaking Change in v2
 
 If you have a branch called gh-pages already rename it to gh-pages-old. In repository settings, go to Pages, copy the 'Custom domain' value, for 'Build and deployment' 'Source' change to the option 'GitHubs Actions'. Apply the yml code below to your CI Actions. If all is working you can remove the gh-pages-old branch. You may need to manually run the below workflow once it is merged into main.
@@ -49,7 +53,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ministryofjustice/tech-docs-github-pages-publisher:v2
+      image: ministryofjustice/tech-docs-github-pages-publisher:v3
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -128,6 +132,8 @@ Inside the Docker container run the html-proofer tests locally before creating a
 ```
 ../scripts/compile-and-create-artifact.sh
 ```
+
+Alternatively use the [makefile](https://github.com/ministryofjustice/technical-guidance/blob/main/makefile) from the technical-guidance repository to run the Docker container locally using the `make preview` and `make check` commands
 
 ## CI/CD
 
