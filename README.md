@@ -18,9 +18,9 @@ This image is used by the [MoJ Template Documentation Site](https://github.com/m
 
 ## Breaking Change in v3
 
-The scripts in the Docker container have changed. 
+The scripts in the Docker container have changed.
 
-`scripts/deploy.sh` is now used to check internal links only during the deploy stage. See `.github/workflows/publish-gh-pages.yml` below. 
+`scripts/deploy.sh` is now used to check internal links only during the deploy stage. See `.github/workflows/publish-gh-pages.yml` below.
 
 [Optional]: Use the `scripts/check-url-links.sh` to test internal and external URLs, it may produce false errors for valid working URLs. Add the `.github/workflows/check-links.yml` below to run the check when the PR is created. The false errors can be ignored.
 
@@ -159,12 +159,11 @@ Inside the Docker container run the html-proofer tests locally before creating a
 ../scripts/deploy.sh
 ```
 
-or 
+or
 
 ```
 ../scripts/check-url-links.sh
 ```
-
 
 Alternatively use the [makefile](https://github.com/ministryofjustice/technical-guidance/blob/main/makefile) from the technical-guidance repository to run the Docker container locally using the `make preview`, `make deploy` or `make check` commands.
 
