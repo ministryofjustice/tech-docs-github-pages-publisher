@@ -24,6 +24,8 @@ The scripts in the Docker container have changed.
 
 [Optional]: Use the `scripts/check-url-links.sh` to test internal and external URLs, it may produce false errors for valid working URLs. Add the `.github/workflows/check-links.yml` below to run the check when the PR is created. The false errors can be ignored.
 
+[Optional]: Use the `url-check` job within `.github/workflows/publish-gh-pages.yml` to check the URLs are correct post deployment. Private and internal Github repository URLs and other URLs that create false errors can be listed and skipped within this job.
+
 ## Breaking Change in v2
 
 If you have a branch called gh-pages already rename it to gh-pages-old. In repository settings, go to Pages, copy the 'Custom domain' value, for 'Build and deployment' 'Source' change to the option 'GitHubs Actions'. Apply the yml code below to your CI Actions. If all is working you can remove the gh-pages-old branch. You may need to manually run the below workflow once it is merged into main.
@@ -83,6 +85,23 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+
+  url-check:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download a Build Artifact from build
+        uses: actions/download-artifact@v3
+        with:
+          name: github-pages
+          path: github-pages
+      - name: Unpack files and check URL links
+        run: |
+          cd github-pages
+          tar -xvf artifact.tar
+          npm install linkinator
+          npx linkinator . --recurse --markdown \
+          #  --skip https://github.com/ministryofjustice/some-private-repo \
 ```
 
 Create a `.github/workflows/check-links.yml` file that uses `scripts/check-url-links.sh`.
