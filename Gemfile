@@ -10,4 +10,4 @@ gem "govuk_tech_docs"
 gem "html-proofer", "=4.4.3"
 
 # Fixed as v6.x has an issue when run Middleman build command
-gem "haml", "=5.2.2"
+gem "haml", "6.0.9"
