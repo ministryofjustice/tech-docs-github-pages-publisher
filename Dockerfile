@@ -1,5 +1,7 @@
 FROM docker.io/ruby:2.7.7-alpine3.16
 
+ARG BUNDLE_RUBYGEMS__PKG__GITHUB__COM
+
 # These are needed to support building native extensions during
 # bundle install step
 RUN apk --update add --virtual build_deps build-base git
