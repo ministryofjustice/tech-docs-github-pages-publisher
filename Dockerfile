@@ -1,4 +1,4 @@
-FROM ruby:2.7.6-alpine3.15
+FROM docker.io/ruby:2.7.7-alpine3.16
 
 # These are needed to support building native extensions during
 # bundle install step
@@ -24,5 +24,4 @@ RUN bundle install
 RUN mkdir /stashed-files
 COPY config.rb Gemfile Gemfile.lock /stashed-files/
 
-RUN mkdir /publishing-scripts
 COPY scripts/* /scripts/
