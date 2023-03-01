@@ -1,3 +1,4 @@
+# Do not update to Ruby 3 until Gemfile dependencies are fixed
 FROM ruby:2.7.6-alpine3.15
 
 # These are needed to support building native extensions during
