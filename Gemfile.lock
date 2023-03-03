@@ -172,7 +172,7 @@ GEM
 GEM
   remote: https://rubygems.pkg.github.com/ministryofjustice/
   specs:
-    govuk_tech_docs (3.3.1)
+    govuk_tech_docs (3.3.2)
       autoprefixer-rails (~> 10.2)
       chronic (~> 0.10.2)
       middleman (~> 4.0)
@@ -190,7 +190,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  govuk_tech_docs (= 3.3.1)!
+  govuk_tech_docs (= 3.3.2)!
   haml (= 5.2.2)
   html-proofer (= 4.4.3)
 
