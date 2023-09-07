@@ -1,5 +1,5 @@
 # Do not update to Ruby 3 until Gemfile dependencies are fixed
-FROM ruby:2.7.6-alpine3.15
+FROM ruby:3-alpine3.17
 
 # These are needed to support building native extensions during
 # bundle install step

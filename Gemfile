@@ -1,9 +1,5 @@
 source "https://rubygems.org"
 
-# Fixed as Date exception occurs in govuk_tech_docs for review_date
-# when use ruby 3.x
-ruby "2.7.6"
-
 gem "govuk_tech_docs"
 
 # Fixed as v5.x requires ruby 3.x

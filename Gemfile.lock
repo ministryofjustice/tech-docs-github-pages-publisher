@@ -193,8 +193,5 @@ DEPENDENCIES
   haml (= 5.2.2)
   html-proofer (= 4.4.3)
 
-RUBY VERSION
-   ruby 2.7.6
-
 BUNDLED WITH
    2.3.23
