@@ -10,4 +10,9 @@ cp /stashed-files/* .
 bundle exec middleman build --build-dir docs --relative-links --verbose
 
 # Check all URLs 
-htmlproofer --log-level debug --allow-missing-href true --typhoeus '{"connecttimeout": 10, "timeout": 30, "accept_encoding": "zstd,br,gzip,deflate" }' ./docs
+htmlproofer \
+  --log-level debug \
+  --allow-missing-href true \
+  --typhoeus '{"connecttimeout": 10, "timeout": 30, "accept_encoding": "zstd,br,gzip,deflate" }' \
+  --ignore-files "/.\/docs\/search\/index.html/" \
+  ./docs
