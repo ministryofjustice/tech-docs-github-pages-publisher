@@ -1,5 +1,5 @@
 # Do not update to Ruby 3 until Gemfile dependencies are fixed
-FROM docker.io/ruby:2.7.8-alpine3.16
+FROM docker.io/ruby:2.7.8-bullseye
 
 ARG BUNDLE_RUBYGEMS__PKG__GITHUB__COM
 
