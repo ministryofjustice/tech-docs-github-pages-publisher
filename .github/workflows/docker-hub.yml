@@ -43,6 +43,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
+          platforms: ${{ matrix.platform }}
           tags: ministryofjustice/tech-docs-github-pages-publisher:${{ env.tag }}
           build-args: |
             BUNDLE_RUBYGEMS__PKG__GITHUB__COM=${{ secrets.GITHUB_TOKEN }}
