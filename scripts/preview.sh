@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Allow documentation sites to preview what the site will look like when published.
 
