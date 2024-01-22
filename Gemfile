@@ -4,7 +4,7 @@ source "https://rubygems.org"
 # when use ruby 3.x
 ruby "2.7.6"
 
-gem "govuk_tech_docs"
+gem "govuk_tech_docs" "=3.2.1"
 
 # Fixed as v5.x requires ruby 3.x
 gem "html-proofer", "=4.4.3"
