@@ -8,7 +8,7 @@ RUN apk --update add --virtual build_deps build-base git
 RUN addgroup -g 1000 -S appgroup \
   && adduser -u 1000 --system appuser \
   && adduser appuser appgroup \
-  && gem install bundler \
+  && gem install bundler -v 2.4.22\
   && bundle config
 
 # Required at runtime by middleman
