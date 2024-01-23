@@ -29,7 +29,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ministryofjustice/tech-docs-github-pages-publisher:{{ inputs.release_tag }}
+          tags: ministryofjustice/tech-docs-github-pages-publisher:${{ inputs.release_tag }}
 
       - name: Report failure to Slack
         if: always()
