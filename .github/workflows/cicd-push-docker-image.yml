@@ -2,8 +2,11 @@ name: ♻️ Push Docker Image
 
 on:
   workflow_dispatch:
-  release:
-    types: [published]
+    inputs:
+      release_tag:
+        type: string
+        description: Release tag for docker image. In format `v{x}.{y}.{z}` i.e `v3.0.1`
+        required: true
 
 jobs:
   push_to_registry:
@@ -26,7 +29,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ministryofjustice/tech-docs-github-pages-publisher:latest
+          tags: ministryofjustice/tech-docs-github-pages-publisher:{{ inputs.release_tag }}
 
       - name: Report failure to Slack
         if: always()
