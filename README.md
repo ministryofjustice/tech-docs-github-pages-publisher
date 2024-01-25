@@ -25,7 +25,7 @@ The scripts in the Docker container have changed.
 If you see an error like this:
 
 ```bash
-  internally linking to ./blah-communications-plan.html#tips-on-format-of-communications-examples; the file exists, but the hash 'tips-on-format-of-communications-examples' does not
+  internally linking to ./*-communications-plan.html#tips-on-format-of-communications-examples; the file exists, but the hash 'tips-on-format-of-communications-examples' does not
 ```
 
 You can override the `check_interal_hash` argument with `scripts/deploy.sh false`
