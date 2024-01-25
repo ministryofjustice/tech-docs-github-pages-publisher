@@ -22,6 +22,15 @@ The scripts in the Docker container have changed.
 
 `scripts/deploy.sh` is now used to check internal links only during the deploy stage. See `.github/workflows/publish-gh-pages.yml` below.
 
+If you see an error like this:
+
+```bash
+  internally linking to ./*-communications-plan.html#tips-on-format-of-communications-examples; the file exists, but the hash 'tips-on-format-of-communications-examples' does not
+```
+
+You can override the `check_interal_hash` argument with `scripts/deploy.sh false`
+
+
 [Optional]: Use the `scripts/check-url-links.sh` to test internal and external URLs, it may produce false errors for valid working URLs. Add the `.github/workflows/check-links.yml` below to run the check when the PR is created. The false errors can be ignored.
 
 [Optional]: Use the `url-check` job within `.github/workflows/publish-gh-pages.yml` to check the URLs are correct post deployment. Private and internal Github repository URLs and other URLs that create false errors can be listed and skipped within this job.
