@@ -23,7 +23,7 @@ jobs:
         id: build
         shell: bash
         run: |
-          docker build --file Docker --tag ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:latest .
+          docker build --file Dockerfile --tag ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:latest .
 
       - name: Test
         id: test
