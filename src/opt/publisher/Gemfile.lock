@@ -186,7 +186,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  govuk_tech_docs (~> 3.4)
+  govuk_tech_docs (= 3.4.0)
 
 BUNDLED WITH
    2.5.6
