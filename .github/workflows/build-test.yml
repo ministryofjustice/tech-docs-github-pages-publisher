@@ -1,0 +1,35 @@
+---
+name: Build and Test
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions: {}
+
+jobs:
+  build-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Build
+        id: build
+        shell: bash
+        run: |
+          docker build --file Docker --tag ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:latest .
+
+      - name: Test
+        id: test
+        shell: bash
+        working-directory: test
+        run: |
+          docker run -it --rm \
+            --volume ${PWD}:/publisher \
+            ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:latest /usr/local/bin/td-package
