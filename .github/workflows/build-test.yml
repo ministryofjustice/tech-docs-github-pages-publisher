@@ -29,7 +29,6 @@ jobs:
         id: test
         shell: bash
         run: |
-          sudo chown --recursive 1000:1000 ${GITHUB_WORKSPACE}/test
           docker run --rm \
             --volume ${GITHUB_WORKSPACE}/test:/publisher \
             ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:latest /usr/local/bin/td-package

@@ -6,34 +6,24 @@ LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.description="Container for build and packaging tech-docs" \
       org.opencontainers.image.url="https://github.com/ministryofjustice/tech-docs-github-pages-publisher"
 
-ENV CONTAINER_GID="1000" \
-    CONTAINER_GROUP="publisher" \
-    CONTAINER_UID="1000" \
-    CONTAINER_USER="publisher" \
-    CONTAINER_HOME="/publisher" \
+ENV PUBLISHER_DIRECTORY="/publisher" \
     BUNDLER_VERSION="2.5.6" \
     LYCHEE_VERSION="0.14.3"
 
-RUN addgroup \
-      --gid ${CONTAINER_GID} \
-      --system \
-      ${CONTAINER_GROUP} \
-    && adduser \
-      --uid ${CONTAINER_UID} \
-      --ingroup ${CONTAINER_GROUP} \
-      --disabled-password \
-      ${CONTAINER_USER} \
-    && install -dD -o ${CONTAINER_USER} -g ${CONTAINER_GROUP} -m 700 ${CONTAINER_HOME}
+# Create publisher directory
+RUN install -dD -o root -g root -m 700 ${PUBLISHER_DIRECTORY}
 
+# Install dependencies
 RUN apk --update-cache --no-cache add \
       build-base \
       curl \
       git \
       nodejs
 
-RUN gem install bundler --version ${BUNDLER_VERSION} \
-    && bundle config
+# Install bundler
+RUN gem install bundler --version ${BUNDLER_VERSION}
 
+# Install lychee
 RUN curl --location --fail-with-body \
       "https://github.com/lycheeverse/lychee/releases/download/v${LYCHEE_VERSION}/lychee-v${LYCHEE_VERSION}-x86_64-unknown-linux-musl.tar.gz" \
       --output lychee.tar.gz \
@@ -41,16 +31,20 @@ RUN curl --location --fail-with-body \
     && install -o root -g root -m 775 lychee /usr/local/bin/lychee \
     && rm -f lychee.tar.gz
 
+# Copy scripts
 COPY src/usr/local/bin/ /usr/local/bin/
 
+# Set working directory
 WORKDIR /opt/publisher
 
+# Copy publishing artefacts
 COPY src/opt/publisher/ /opt/publisher/
 
+# Install dependencies
 RUN bundle install
 
-WORKDIR ${CONTAINER_HOME}
+# Set working directory
+WORKDIR ${PUBLISHER_DIRECTORY}
 
-USER ${CONTAINER_USER}
-
+# Set entrypoint
 ENTRYPOINT ["/bin/sh"]
