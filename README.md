@@ -61,7 +61,7 @@ docker run -it --rm \
   --publish 4567:4567 \
   --volume $(pwd)/config:/app/config \
   --volume $(pwd)/source:/app/source \
-  ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:latest/usr/local/bin/td-preview
+  ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:v4.0.0 /usr/local/bin/td-preview
 ```
 
 ## Updating
@@ -73,13 +73,13 @@ However if you need to update manually, you can do the following:
 1. Build the image
 
     ```bash
-    docker build --file Dockerfile --tag ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:latest .
+    docker build --file Dockerfile --tag ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:local .
     ```
 
 1. Extract `Gemfile.lock`
 
     ```bash
-    docker run -it --rm ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:latest
+    docker run -it --rm ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:local
 
     cat /opt/publishing/Gemfile.lock
     ```
