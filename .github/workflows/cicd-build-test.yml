@@ -30,7 +30,7 @@ jobs:
         shell: bash
         run: |
           docker run --rm \
-            --volume ${GITHUB_WORKSPACE}/test:/publisher \
+            --volume ${GITHUB_WORKSPACE}/test:/app \
             ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:latest /usr/local/bin/package
 
       - name: Lychee
