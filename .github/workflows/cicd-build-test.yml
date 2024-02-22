@@ -23,7 +23,7 @@ jobs:
         id: build
         shell: bash
         run: |
-          docker build --file Dockerfile --tag ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:latest .
+          docker build --file Dockerfile --tag ministryofjustice/tech-docs-github-pages-publisher:latest .
 
       - name: Package
         id: package
@@ -31,7 +31,7 @@ jobs:
         run: |
           docker run --rm \
             --volume ${GITHUB_WORKSPACE}/test:/app \
-            ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:latest /usr/local/bin/package
+            ministryofjustice/tech-docs-github-pages-publisher:latest /usr/local/bin/package
 
       - name: Lychee
         id: lychee
