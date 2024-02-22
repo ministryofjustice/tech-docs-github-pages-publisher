@@ -8,10 +8,6 @@ This repository publishes a utility container for previewing and packaging [GOV.
 
 ### v4
 
-The container is now hosted on GitHub Container Registry.
-
-The testing framework is now [Lychee.](https://github.com/lycheeverse/lychee)
-
 The scripts have moved:
 
 - `/scripts/deploy.sh` is now `/usr/local/bin/package`
@@ -22,7 +18,7 @@ The scripts have moved:
 
 The scripts in the Docker container have changed.
 
-`scripts/deploy.sh` is now used to check internal links only during the deploy stage. See `.github/workflows/publish-gh-pages.yml` below.
+`scripts/deploy.sh` is now used to check internal links only during deployment. See `.github/workflows/publish-gh-pages.yml` below.
 
 If you see an error like this:
 
@@ -33,13 +29,13 @@ If you see an error like this:
 You can override the `check_interal_hash` argument with `scripts/deploy.sh false`
 
 
-[Optional]: Use the `scripts/check-url-links.sh` to test internal and external URLs, it may produce false errors for valid working URLs. Add the `.github/workflows/check-links.yml` below to run the check when the PR is created. The false errors can be ignored.
+[Optional]: Use the `scripts/check-url-links.sh` to test internal and external URLs. It may produce false errors for valid working URLs. Add the `.github/workflows/check-links.yml` below to run the check when the PR is created. The false errors can be ignored.
 
-[Optional]: Use the `url-check` job within `.github/workflows/publish-gh-pages.yml` to check the URLs are correct post deployment. Private and internal Github repository URLs and other URLs that create false errors can be listed and skipped within this job.
+[Optional]: Use the `url-check` job within `.github/workflows/publish-gh-pages.yml` to check the URLs are correct post-deployment. Private and internal Github repository URLs and other URLs that create false errors can be listed and skipped within this job.
 
 ### v2
 
-If you have a branch called gh-pages already rename it to gh-pages-old. In repository settings, go to Pages, copy the 'Custom domain' value, for 'Build and deployment' 'Source' change to the option 'GitHubs Actions'. Apply the yml code below to your CI Actions. If all is working you can remove the gh-pages-old branch. You may need to manually run the below workflow once it is merged into main.
+If you have a branch called gh-pages already rename it to gh-pages-old. In repository settings, go to Pages, copy the 'Custom domain' value, and for 'Build and deployment' 'Source' change to the option 'GitHubs Actions'. Apply the yml code below to your CI Actions. If all is working you can remove the gh-pages-old branch. You may need to manually run the below workflow once it is merged into the main.
 
 ## Usage
 
@@ -53,7 +49,7 @@ Examples of how to use the container can be found below:
 
 ### Locally
 
-To preview locally, you will need Docker, then you can run:
+To preview locally, you will need Docker, and then you can run the following:
 
 ```bash
 docker run -it --rm \
@@ -68,7 +64,7 @@ docker run -it --rm \
 
 Dependabot _should_ take care of updating dependencies in [`Gemfile`](src/opt/publisher/Gemfile) and [`Gemfile.lock`](src/opt/publisher/Gemfile.lock).
 
-However if you need to update manually, you can do the following:
+However, if you need to update manually, you can do the following:
 
 1. Build the image
 
@@ -86,6 +82,16 @@ However if you need to update manually, you can do the following:
 
 1. Replace [`Gemfile.lock`](src/opt/publisher/Gemfile.lock)
 
-## Releasing
+## Release
+
+To create a new release:
+
+1. Push to the main branch.
+
+1. Create a new tag using `git tag vn.n.n` where `n.n.n` is the version number. Please follow semantic versioning.
+
+1. Push the tag to the remote repository using `git push origin --tags`.
+
+1. The "release" CICD pipeline is triggered, creating the release and performing the relevant docker actions. 
 
 To create a new release, follow [GitHub's procedure](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)
