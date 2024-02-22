@@ -10,8 +10,6 @@ ENV PUBLISHER_DIRECTORY="/publisher" \
     BUNDLER_VERSION="2.5.6" \
     LYCHEE_VERSION="0.14.3"
 
-# Create publisher directory
-RUN install -dD -o root -g root -m 700 ${PUBLISHER_DIRECTORY}
 
 # Install dependencies
 RUN apk --update-cache --no-cache add \
@@ -20,10 +18,10 @@ RUN apk --update-cache --no-cache add \
       git \
       nodejs
 
-# Install bundler
-RUN gem install bundler --version ${BUNDLER_VERSION}
+RUN install -dD -o root -g root -m 700 "${PUBLISHER_DIRECTORY}"
 
-# Install lychee
+RUN gem install bundler --version "${BUNDLER_VERSION}"
+
 RUN curl --location --fail-with-body \
       "https://github.com/lycheeverse/lychee/releases/download/v${LYCHEE_VERSION}/lychee-v${LYCHEE_VERSION}-x86_64-unknown-linux-musl.tar.gz" \
       --output lychee.tar.gz \
@@ -31,20 +29,14 @@ RUN curl --location --fail-with-body \
     && install -o root -g root -m 775 lychee /usr/local/bin/lychee \
     && rm -f lychee.tar.gz
 
-# Copy scripts
 COPY src/usr/local/bin/ /usr/local/bin/
 
-# Set working directory
 WORKDIR /opt/publisher
 
-# Copy publishing artefacts
 COPY src/opt/publisher/ /opt/publisher/
 
-# Install dependencies
 RUN bundle install
 
-# Set working directory
 WORKDIR ${PUBLISHER_DIRECTORY}
 
-# Set entrypoint
 ENTRYPOINT ["/bin/sh"]
