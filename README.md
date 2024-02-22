@@ -12,7 +12,7 @@ The container is now hosted on GitHub Container Registry.
 
 The testing framework is now [Lychee.](https://github.com/lycheeverse/lychee)
 
-The scripts have moved moved:
+The scripts have moved:
 
 - `/scripts/deploy.sh` is now `src/usr/local/bin/td-package`
 
