@@ -28,7 +28,7 @@ jobs:
       - name: Build
         id: build
         run: |
-          /usr/local/bin/td-package
+          /usr/local/bin/package
 
       - name: Upload Artifact
         id: upload_artifact

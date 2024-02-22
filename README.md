@@ -10,13 +10,11 @@ This repository publishes a utility container for previewing and packaging [GOV.
 
 The container is now hosted on GitHub Container Registry.
 
-The testing framework is now [Lychee.](https://github.com/lycheeverse/lychee)
-
 The scripts have moved moved:
 
-- `/scripts/deploy.sh` is now `src/usr/local/bin/td-package`
+- `/scripts/deploy.sh` is now `src/usr/local/bin/package`
 
-- `/scripts/preview.sh` is now `src/usr/local/bin/td-preview`
+- `/scripts/preview.sh` is now `src/usr/local/bin/preview`
 
 ### v3
 
@@ -61,7 +59,7 @@ docker run -it --rm \
   --publish 4567:4567 \
   --volume $(pwd)/config:/app/config \
   --volume $(pwd)/source:/app/source \
-  ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:v4.0.0 /usr/local/bin/td-preview
+  ministryofjustice/tech-docs-github-pages-publisher:v4.0.0 /usr/local/bin/preview
 ```
 
 ## Updating
@@ -73,15 +71,15 @@ However if you need to update manually, you can do the following:
 1. Build the image
 
     ```bash
-    docker build --file Dockerfile --tag ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:local .
+    docker build --file Dockerfile --tag ministryofjustice/tech-docs-github-pages-publisher:local .
     ```
 
 1. Extract `Gemfile.lock`
 
     ```bash
-    docker run -it --rm ghcr.io/ministryofjustice/tech-docs-github-pages-publisher:local
+    docker run -it --rm ministryofjustice/tech-docs-github-pages-publisher:local
 
-    cat /opt/publishing/Gemfile.lock
+    cat /opt/publisher/Gemfile.lock
     ```
 
 1. Replace [`Gemfile.lock`](src/opt/publisher/Gemfile.lock)

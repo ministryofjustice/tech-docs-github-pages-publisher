@@ -6,8 +6,5 @@ cp /opt/publisher/* .
 # Compile the site
 bundle exec middleman build --build-dir docs --relative-links --verbose
 
-# Lychee
-lychee --verbose --no-progress './**/*.md' './**/*.html' './**/*.erb' --accept 403,200,429
-
 # Create the artifact
 tar --dereference --directory docs -cvf artifact.tar --exclude=.git --exclude=.github .

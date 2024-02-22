@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (7.0.8)
+    activesupport (7.0.8.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -42,7 +42,7 @@ GEM
     fast_blank (1.0.1)
     fastimage (2.3.0)
     ffi (1.16.3)
-    govuk_tech_docs (3.4.0)
+    govuk_tech_docs (3.5.0)
       autoprefixer-rails (~> 10.2)
       chronic (~> 0.10.2)
       haml (< 6.0.0)
@@ -149,7 +149,7 @@ GEM
     parslet (2.0.0)
     public_suffix (5.0.4)
     racc (1.7.3)
-    rack (2.2.8)
+    rack (2.2.8.1)
     rack-livereload (0.3.17)
       rack
     rb-fsevent (0.11.2)
@@ -186,7 +186,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  govuk_tech_docs (= 3.4.0)
+  govuk_tech_docs (= 3.5.0)
 
 BUNDLED WITH
    2.5.6
