@@ -1,0 +1,18 @@
+---
+# See the available options: https://tdt-documentation.london.cloudapps.digital/configure_project/global_configuration/#configure-your-documentation-site
+
+host: https://ministryofjustice.github.io/tech-docs-github-pages-publisher
+show_govuk_logo: false
+service_name: Tech Docs GitHub Pages Publisher
+service_link: /
+phase: test
+enable_search: true
+collapsible_nav: true
+max_toc_heading_level: 3
+prevent_indexing: true
+show_contribution_banner: true
+github_repo: ministryofjustice/tech-docs-github-pages-publisher
+github_branch: main
+full_service_name: Tech Docs GitHub Pages Publisher
+show_expiry: true
+show_review_banner: true

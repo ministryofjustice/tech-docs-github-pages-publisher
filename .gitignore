@@ -1,4 +1,14 @@
 .env
-
+.terraform/
+coverage/
+venv/
+env/
+.DS_STORE
 .vscode
-.idea
+*.code-workspace
+*.sha256
+terraform.tfstate
+test/docs
+test/artifact.tar
+test/config.rb
+test/Gemfile*

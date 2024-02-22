@@ -1,29 +1,24 @@
-# Do not update to Ruby 3 until Gemfile dependencies are fixed
-FROM ruby:2.7.6-alpine3.15
+FROM docker.io/ruby:3.2.3-alpine3.19
 
-# These are needed to support building native extensions during
-# bundle install step
-RUN apk --update add --virtual build_deps build-base git
+ENV BUNDLER_VERSION="2.5.6"
 
-RUN addgroup -g 1000 -S appgroup \
-  && adduser -u 1000 --system appuser \
-  && adduser appuser appgroup \
-  && gem install bundler -v 2.4.22\
-  && bundle config
+RUN apk --update-cache --no-cache add \
+      build-base \
+      git \
+      nodejs
 
-# Required at runtime by middleman
-RUN apk add --no-cache nodejs
+RUN gem install bundler --version "${BUNDLER_VERSION}"
 
-WORKDIR /app
+# Adding package and preview scripts
+COPY bin/ /usr/local/bin/
 
-COPY Gemfile Gemfile.lock ./
+# Copy Gemfile and Gemfile.lock, install gems and store them for packaging and preview scripts
+WORKDIR /opt/publisher
+
+COPY src/opt/publisher/ /opt/publisher/
 
 RUN bundle install
 
-# Stash a copy of the config.rb, Gemfile and Gemfile.lock Middleman need these
-# later, because documentation repos won't have them.
-RUN mkdir /stashed-files
-COPY config.rb Gemfile Gemfile.lock /stashed-files/
+WORKDIR /app
 
-RUN mkdir /publishing-scripts
-COPY scripts/* /scripts/
+ENTRYPOINT ["/bin/sh"]
