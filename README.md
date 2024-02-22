@@ -10,11 +10,13 @@ This repository publishes a utility container for previewing and packaging [GOV.
 
 The container is now hosted on GitHub Container Registry.
 
-The scripts have moved moved:
+The testing framework is now [Lychee.](https://github.com/lycheeverse/lychee)
 
-- `/scripts/deploy.sh` is now `src/usr/local/bin/package`
+The scripts have moved:
 
-- `/scripts/preview.sh` is now `src/usr/local/bin/preview`
+- `/scripts/deploy.sh` is now `/usr/local/bin/package`
+
+- `/scripts/preview.sh` is now `/usr/local/bin/preview`
 
 ### v3
 
