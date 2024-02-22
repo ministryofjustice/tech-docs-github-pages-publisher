@@ -8,8 +8,6 @@ This repository publishes a utility container for previewing and packaging [GOV.
 
 ### v4
 
-The container is now hosted on GitHub Container Registry.
-
 The scripts have moved:
 
 - `/scripts/deploy.sh` is now `/usr/local/bin/package`
