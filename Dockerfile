@@ -1,6 +1,6 @@
-FROM docker.io/ruby:3.2.3-alpine3.19
+FROM ruby:3.3.5-alpine3.20
 
-ENV BUNDLER_VERSION="2.5.6"
+ENV BUNDLER_VERSION="2.5.22"
 
 RUN apk --update-cache --no-cache add \
       build-base \
