@@ -8,6 +8,22 @@ This repository publishes a utility container for previewing and packaging [GOV.
 
 ## ⚠️ Breaking Changes
 
+### v5
+
+As documented in the release notes for [v4.0.0](https://github.com/alphagov/tech-docs-gem/releases/tag/v4.0.0) of [`alphagov/tech-docs-gem`](https://github.com/alphagov/tech-docs-gem/)
+
+> * BREAKING: drop support for end-of-life Ruby versions 2.7 and 3.0. The minimum Ruby version is now 3.1.
+> * BREAKING: drop support for IE8
+> * BREAKING: Upgrade to govuk-frontend v5.7.1 and introduce new Javascript entry point
+
+you will need to create a new file `source/javascripts/govuk_frontend.js` with the following:
+
+```javascript
+//= require govuk_frontend_all
+```
+
+This can be found [here](test/source/javascripts/govuk_frontend.js).
+
 ### v4
 
 The scripts have moved:
