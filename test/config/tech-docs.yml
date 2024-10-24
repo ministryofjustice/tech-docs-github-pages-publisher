@@ -5,7 +5,7 @@ host: https://ministryofjustice.github.io/tech-docs-github-pages-publisher
 show_govuk_logo: false
 service_name: Tech Docs GitHub Pages Publisher
 service_link: /
-phase: test
+phase: TEST
 enable_search: true
 collapsible_nav: true
 max_toc_heading_level: 3
