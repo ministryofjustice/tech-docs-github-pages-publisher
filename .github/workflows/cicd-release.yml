@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         
       - name: Release
-        uses: softprops/action-gh-release@970e29c7f0335519b5e1f634dd4d92fdef9bd3ce # v0.1.15
+        uses: softprops/action-gh-release@cd8b57e57218a24af14e307ad8491ec133804ef1 # v0.1.15
         with:
           generate_release_notes: true
           
