@@ -7,6 +7,11 @@ updates:
     schedule:
       interval: "daily"
       time: "09:00" # UTC
+  - package-ecosystem: "devcontainers"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "09:00" # UTC
   - package-ecosystem: "bundler"
     directory: "/"
     schedule:
