@@ -1,3 +1,6 @@
+#checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Image does not run a web server
+#checkov:skip=CKV_DOCKER_3: USER not required        - Image does not run in production, it is a utility
+
 FROM docker.io/ruby:3.3.5-alpine3.20
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
@@ -26,7 +29,6 @@ gem install bundler --version "${BUNDLER_VERSION}"
 
 bundle install
 EOF
-RUN
 
 WORKDIR /tech-docs-github-pages-publisher
 ENTRYPOINT ["/bin/sh"]
