@@ -18,9 +18,9 @@ COPY --chown="root:root" --chmod=0755 src/usr/local/bin/ /usr/local/bin/
 WORKDIR /opt/publisher
 RUN <<EOF
 apk --update-cache --no-cache add \
-  build-base \
-  git \
-  nodejs
+  build-base==0.5-r3 \
+  git==2.45.2-r0 \
+  nodejs==2.5.22
 
 gem install bundler --version "${BUNDLER_VERSION}"
 
