@@ -20,7 +20,7 @@ RUN <<EOF
 apk --update-cache --no-cache add \
   build-base==0.5-r3 \
   git==2.45.2-r0 \
-  nodejs==2.5.22
+  nodejs==20.15.1-r0
 
 gem install bundler --version "${BUNDLER_VERSION}"
 

@@ -1,4 +1,4 @@
-.PHONY: build container-structure-test package preview scan
+.PHONY: build test package preview scan
 
 IMAGE_NAME ?= ghcr.io/ministryofjustice/tech-docs-github-pages-publisher
 IMAGE_TAG  ?= local
@@ -17,7 +17,7 @@ build:
 		docker build --file Dockerfile --tag $(IMAGE_NAME):$(IMAGE_TAG) . ;; \
 	esac
 
-container-structure-test: build
+test: build
 	container-structure-test test --platform linux/amd64 --config test/container-structure-test.yml --image $(IMAGE_NAME):$(IMAGE_TAG)
 
 exec: build
