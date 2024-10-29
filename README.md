@@ -4,19 +4,19 @@
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ministryofjustice/tech-docs-github-pages-publisher)
 
-This repository packages the Government Digital Service's [tech-docs-gem](https://github.com/alphagov/tech-docs-gem) in a container, to make it simple to use when developing and publishing your technical documentation using the Government Digital Service's [tech-docs-template](https://github.com/alphagov/tech-docs-template).
+This repository packages the Government Digital Service's [tech-docs-gem](https://github.com/alphagov/tech-docs-gem) in a container, to make it simple to use when developing and publishing your technical documentation using the [template-documentation-site](https://github.com/ministryofjustice/template-documentation-site).
 
-Usage of this container will be documented through our [template-documentation-site](https://github.com/ministryofjustice/template-documentation-site).
+Usage of this container will be documented on the [template-documentation-site](https://github.com/ministryofjustice/template-documentation-site).
 
-## Running Locally
+## Developing
 
-### Build
+### Build Container
 
 ```bash
 make build
 ```
 
-### Preview
+### Previewing Test Site
 
 ```bash
 make preview
@@ -27,7 +27,7 @@ make preview
 ### Base Image and Ruby
 
 > [!NOTE]
-> Dependabot should ignore this because its not pinned using a SHA, if it does try to update, it will fail the Container Structure Test
+> Dependabot might try to update this to the latest `ruby` image, but doing so will fail the [Container Structure Test](test/container-structure-test.yml)
 
 The base image is derived from [tech-docs-gem's](https://github.com/alphagov/tech-docs-gem) latest supported Ruby version, which can be found in their [test matrix](https://github.com/alphagov/tech-docs-gem/blob/main/.github/workflows/test.yaml#L17).
 
@@ -35,12 +35,20 @@ As of 26/10/24, that version is [3.3.5](https://www.ruby-lang.org/en/news/2024/0
 
 Using 3.3.5, you can find the latest Alpine image by [searching Docker Hub](https://hub.docker.com/_/ruby/tags?name=3.3.5-alpine).
 
+To obtain the SHA, you can run:
+
+```bash
+docker pull --platform linux/amd64 docker.io/ruby:3.3.5-alpine3.20
+
+docker image inspect --format='{{ index .RepoDigests 0 }}' docker.io/ruby:3.3.5-alpine3.20
+```
+
 ### Gemfile and Gemfile.lock
 
 > [!IMPORTANT]
-> Dependabot is configured to maintain these, however this repository is just packaging `govuk_tech_docs`, so proceed with caution when reviewing
+> Dependabot is configured to maintain these, however this repository is just packaging `govuk_tech_docs`, so proceed with caution when reviewing and approving
 
-When the Government Digital Service release a new version of `govuk_tech_docs`, update the [`Gemfile`](src/opt/publisher/Gemfile) and run `make build` to generate a new `Gemfile.lock`. Run `make exec`, take a copy of `/opt/publisher/Gemfile.lock` and overwrite [`Gemfile.lock`](src/opt/publisher/Gemfile.lock).
+When the Government Digital Service release a new version of [`govuk_tech_docs`](https://rubygems.org/gems/govuk_tech_docs), update [`src/opt/publisher/Gemfile`](src/opt/publisher/Gemfile) and run `make build` to generate a new `Gemfile.lock`, then run `make exec` and take a copy of `/opt/publisher/Gemfile.lock` to overwrite [`src/opt/publisher/Gemfile.lock`](src/opt/publisher/Gemfile.lock).
 
 ## Releasing
 

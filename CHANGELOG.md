@@ -45,6 +45,8 @@ The additional file `source/javascripts/govuk_frontend.js` is now required, you 
 
 - Release to GitHub Container Registry
 
+- Working directory has changed from `/app` to `/tech-docs-github-pages-publisher`
+
 ### Removed
 
 - Release to Docker Hub
