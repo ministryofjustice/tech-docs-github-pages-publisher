@@ -1,0 +1,73 @@
+---
+schemaVersion: 2.0.0
+
+commandTests:
+  - name: "whoami"
+    command: "whoami"
+    expectedOutput: ["root"]
+
+  - name: "user"
+    command: "id"
+    args: ["-u", "root"]
+    expectedOutput: ["0"]
+
+  - name: "group"
+    command: "id"
+    args: ["-g", "root"]
+    expectedOutput: ["0"]
+
+  - name: "alpine"
+    command: "cat"
+    args: ["/etc/alpine-release"]
+    expectedOutput: ["3.20"]
+
+  - name: "ruby"
+    command: "ruby"
+    args: ["--version"]
+    expectedOutput: ["ruby 3.3.5"]
+
+  - name: "git"
+    command: "git"
+    args: ["--version"]
+    expectedOutput: ["git version 2.45.2"]
+
+  - name: "node"
+    command: "node"
+    args: ["--version"]
+    expectedOutput: ["v20.15.1"]
+
+fileExistenceTests:
+  - name: "/opt/publisher/config.rb"
+    path: "/opt/publisher/config.rb"
+    shouldExist: true
+    uid: 0
+    gid: 0
+    permissions: "-rw-r--r--"
+
+  - name: "/opt/publisher/Gemfile"
+    path: "/opt/publisher/Gemfile"
+    shouldExist: true
+    uid: 0
+    gid: 0
+    permissions: "-rw-r--r--"
+
+  - name: "/opt/publisher/Gemfile.lock"
+    path: "/opt/publisher/Gemfile.lock"
+    shouldExist: true
+    uid: 0
+    gid: 0
+    permissions: "-rw-r--r--"
+
+  - name: "/usr/local/bin/package"
+    path: "/usr/local/bin/package"
+    shouldExist: true
+    uid: 0
+    gid: 0
+    permissions: "-rwxr-xr-x"
+
+  - name: "/usr/local/bin/preview"
+    path: "/usr/local/bin/preview"
+    shouldExist: true
+    uid: 0
+    gid: 0
+    permissions: "-rwxr-xr-x"
