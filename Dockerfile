@@ -25,6 +25,9 @@ apk --update-cache --no-cache add \
 gem install bundler --version "${BUNDLER_VERSION}"
 
 bundle install
+
+# Removes rexml 3.3.6 to address CVE-2024-49761
+gem uninstall rexml --version 3.3.6 --install-dir /usr/local/lib/ruby/gems/3.3.0 --force
 EOF
 
 WORKDIR /tech-docs-github-pages-publisher
