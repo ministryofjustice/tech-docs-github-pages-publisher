@@ -1,3 +1,4 @@
+<!-- markdownlint-disable no-duplicate-heading -->
 # CHANGELOG
 
 Starting from v5.0.0, all notable changes to this project will be documented in this file.
