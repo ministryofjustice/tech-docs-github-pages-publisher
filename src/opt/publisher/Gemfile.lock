@@ -69,7 +69,7 @@ GEM
     google-protobuf (4.28.3-x86_64-linux)
       bigdecimal
       rake (>= 13)
-    govuk_tech_docs (4.1.0)
+    govuk_tech_docs (4.1.1)
       autoprefixer-rails (~> 10.2)
       base64
       bigdecimal
@@ -99,8 +99,8 @@ GEM
     http_parser.rb (0.8.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
-    kramdown (2.4.0)
-      rexml
+    kramdown (2.5.0)
+      rexml (>= 3.3.6)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -195,19 +195,19 @@ GEM
     rexml (3.3.9)
     rouge (3.30.0)
     sass (3.4.25)
-    sass-embedded (1.80.4-aarch64-linux-gnu)
+    sass-embedded (1.81.0-aarch64-linux-gnu)
       google-protobuf (~> 4.28)
-    sass-embedded (1.80.4-arm-linux-gnueabihf)
+    sass-embedded (1.81.0-arm-linux-gnueabihf)
       google-protobuf (~> 4.28)
-    sass-embedded (1.80.4-arm64-darwin)
+    sass-embedded (1.81.0-arm64-darwin)
       google-protobuf (~> 4.28)
-    sass-embedded (1.80.4-x86-linux-gnu)
+    sass-embedded (1.81.0-x86-linux-gnu)
       google-protobuf (~> 4.28)
-    sass-embedded (1.80.4-x86_64-darwin)
+    sass-embedded (1.81.0-x86_64-darwin)
       google-protobuf (~> 4.28)
-    sass-embedded (1.80.4-x86_64-linux-gnu)
+    sass-embedded (1.81.0-x86_64-linux-gnu)
       google-protobuf (~> 4.28)
-    sass-embedded (1.80.4-x86_64-linux-musl)
+    sass-embedded (1.81.0-x86_64-linux-musl)
       google-protobuf (~> 4.28)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -228,7 +228,7 @@ GEM
       concurrent-ruby (~> 1.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
-    webrick (1.8.2)
+    webrick (1.9.0)
 
 PLATFORMS
   aarch64-linux
@@ -240,7 +240,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  govuk_tech_docs (= 4.1.0)
+  govuk_tech_docs (= 4.1.1)
 
 BUNDLED WITH
-   2.5.22
+   2.5.23
