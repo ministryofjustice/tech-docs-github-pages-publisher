@@ -1,7 +1,7 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Image does not run a web server
 #checkov:skip=CKV_DOCKER_3: USER not required        - Image does not run in production, it is a utility
 
-FROM docker.io/ruby@sha256:b4c321a99b9f21b7bb24f22e558bf1477630fb55d692aba4e25b2fe5deb7eaf1
+FROM docker.io/ruby@sha256:ac4f8074376743a56db23139238bd642a6249a25d4aaa250ca7e93332d11681c
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Operations Engineering (operations-engineering@digital.justice.gov.uk)" \
