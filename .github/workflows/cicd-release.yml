@@ -57,7 +57,7 @@ jobs:
           output-file: "sbom.cyclonedx.json"
 
       - name: Attest
-        uses: actions/attest-build-provenance@ef244123eb79f2f7a7e75d99086184180e6d0018 # v1.4.4
+        uses: actions/attest-build-provenance@f9eaf234fc1c2e333c1eca18177db0f44fa6ba52 # v2.2.1
         id: attest
         with:
           subject-name: ghcr.io/${{ github.repository }}
