@@ -29,9 +29,11 @@ jobs:
 
       - name: Run Zizmor
         id: zizmor
-        run: uvx zizmor --format sarif . > results.sarif
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          uvx zizmor --format sarif . > results.sarif
 
       - name: Upload SARIF
         id: upload_sarif
