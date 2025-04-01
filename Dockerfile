@@ -1,14 +1,14 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Image does not run a web server
 #checkov:skip=CKV_DOCKER_3: USER not required        - Image does not run in production, it is a utility
 
-FROM docker.io/ruby@sha256:b4c321a99b9f21b7bb24f22e558bf1477630fb55d692aba4e25b2fe5deb7eaf1
+FROM docker.io/ruby:3.3.7-alpine3.21@sha256:6b6a2db6b52015669dcc4b3613c1cfd02f7a74ebbcad98dbe290a814e8ff84e4
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
-      org.opencontainers.image.authors="Operations Engineering (operations-engineering@digital.justice.gov.uk)" \
+      org.opencontainers.image.authors="GitHub Community (github-community@digital.justice.gov.uk)" \
       org.opencontainers.image.title="Tech Docs GitHub Pages Publisher" \
       org.opencontainers.image.url="https://github.com/ministryofjustice/tech-docs-github-pages-publisher"
 
-ARG BUNDLER_VERSION="2.5.23"
+ARG BUNDLER_VERSION="2.6.6"
 
 SHELL ["/bin/sh", "-e", "-u", "-o", "pipefail", "-c"]
 
@@ -19,15 +19,12 @@ WORKDIR /opt/publisher
 RUN <<EOF
 apk --update-cache --no-cache add \
   build-base==0.5-r3 \
-  git==2.45.2-r0 \
-  nodejs==20.15.1-r0
+  git==2.47.2-r0 \
+  nodejs==22.13.1-r0
 
 gem install bundler --version "${BUNDLER_VERSION}"
 
 bundle install
-
-# Removes rexml 3.3.6 to address CVE-2024-49761
-gem uninstall rexml --version 3.3.6 --install-dir /usr/local/lib/ruby/gems/3.3.0 --force
 EOF
 
 WORKDIR /tech-docs-github-pages-publisher
