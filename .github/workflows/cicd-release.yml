@@ -50,7 +50,7 @@ jobs:
         env:
           DIGEST: ${{ steps.build_and_push.outputs.digest }}
         run: |
-          cosign sign --yes ghcr.io/${{ github.repository }}@${DIGEST}
+          cosign sign --yes "ghcr.io/${{ github.repository }}@${DIGEST}"
 
       - name: Generate SBOM
         id: generate_sbom
@@ -86,8 +86,8 @@ jobs:
         run: |
           cosign verify \
             --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-            --certificate-identity=https://github.com/${WORKFLOW_REF} \
-            ghcr.io/${{ github.repository }}@${DIGEST}
+            --certificate-identity="https://github.com/${WORKFLOW_REF}" \
+            "ghcr.io/${{ github.repository }}@${DIGEST}"
 
       - name: GitHub Attestation Verify
         id: gh_attestation_verify
@@ -96,4 +96,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           REF_NAME: ${{ github.ref_name }}
         run: |
-          gh attestation verify oci://ghcr.io/${{ github.repository }}:${REF_NAME} --repo ${{ github.repository }}
+          gh attestation verify "oci://ghcr.io/${{ github.repository }}:${REF_NAME}" --repo ${{ github.repository }}
