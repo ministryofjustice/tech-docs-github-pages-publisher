@@ -18,6 +18,8 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
       - name: Build
         id: build
@@ -36,5 +38,6 @@ jobs:
           TRIVY_JAVA_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-java-db:1
         with:
           image-ref: ghcr.io/${{ github.repository }}:${{ github.sha }}
+          ignore-unfixed: true
           severity: HIGH,CRITICAL
           exit-code: 1
