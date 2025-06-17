@@ -69,7 +69,7 @@ GEM
     google-protobuf (4.28.3-x86_64-linux)
       bigdecimal
       rake (>= 13)
-    govuk_tech_docs (4.4.0)
+    govuk_tech_docs (5.0.0)
       autoprefixer-rails (~> 10.2)
       base64
       bigdecimal
@@ -245,7 +245,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  govuk_tech_docs (= 4.4.0)
+  govuk_tech_docs (= 5.0.0)
 
 BUNDLED WITH
    2.6.9
