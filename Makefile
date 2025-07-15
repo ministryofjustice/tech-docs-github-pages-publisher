@@ -1,4 +1,4 @@
-.PHONY: build test package preview scan
+.PHONY: build test package preview scan copy-gemlock exec
 
 IMAGE_NAME ?= ghcr.io/ministryofjustice/tech-docs-github-pages-publisher
 IMAGE_TAG  ?= local
@@ -42,3 +42,8 @@ preview: build
 
 scan: build
 	trivy image --platform linux/amd64 --severity HIGH,CRITICAL $(IMAGE_NAME):$(IMAGE_TAG)
+
+copy-gemlock: build
+	docker create --name tech-docs-github-pages-publisher-tmp $(IMAGE_NAME):$(IMAGE_TAG)
+	docker container cp tech-docs-github-pages-publisher-tmp://opt/publisher/Gemfile.lock src/opt/publisher/Gemfile.lock
+	docker rm tech-docs-github-pages-publisher-tmp

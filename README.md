@@ -50,7 +50,7 @@ docker image inspect --format='{{ index .RepoDigests 0 }}' docker.io/ruby:3.3.8-
 > [!IMPORTANT]
 > Dependabot is configured to maintain these, however this repository is just packaging `govuk_tech_docs`, so proceed with caution when reviewing and approving
 
-When the Government Digital Service release a new version of [`govuk_tech_docs`](https://rubygems.org/gems/govuk_tech_docs), update [`src/opt/publisher/Gemfile`](src/opt/publisher/Gemfile) and run `make build` to generate a new `Gemfile.lock`, then run `make exec` and take a copy of `/opt/publisher/Gemfile.lock` to overwrite [`src/opt/publisher/Gemfile.lock`](src/opt/publisher/Gemfile.lock).
+When the Government Digital Service release a new version of [`govuk_tech_docs`](https://rubygems.org/gems/govuk_tech_docs), update [`src/opt/publisher/Gemfile`](src/opt/publisher/Gemfile) and run `make copy-gemlock`. This will build the image, and copy the generated `Gemfile.lock` out of the image.
 
 ## Releasing
 
