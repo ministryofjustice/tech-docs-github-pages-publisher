@@ -29,7 +29,7 @@ commandTests:
   - name: "git"
     command: "git"
     args: ["--version"]
-    expectedOutput: ["git version 2.49.0"]
+    expectedOutput: ["git version 2.49.1"]
 
   - name: "node"
     command: "node"
