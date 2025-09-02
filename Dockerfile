@@ -1,14 +1,14 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Image does not run a web server
 #checkov:skip=CKV_DOCKER_3: USER not required        - Image does not run in production, it is a utility
 
-FROM docker.io/ruby:3.3.8-alpine3.22@sha256:e96d7c0f29e2fc89de8a6566865defcce3fdaf682f949bc84f5a5c944bbc2ad6
+FROM docker.io/ruby:3.3.9-alpine3.22@sha256:7713cab0b7d5e905cc83ce0874d829da042785030dcf77439319d33e9bef4d46
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="GitHub Community (github-community@digital.justice.gov.uk)" \
       org.opencontainers.image.title="Tech Docs GitHub Pages Publisher" \
       org.opencontainers.image.url="https://github.com/ministryofjustice/tech-docs-github-pages-publisher"
 
-ARG BUNDLER_VERSION="2.6.9"
+ARG BUNDLER_VERSION="2.7.1"
 
 SHELL ["/bin/sh", "-e", "-u", "-o", "pipefail", "-c"]
 

@@ -1,0 +1,16 @@
+---
+name: ♻️ Container Test
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions: {}
+
+jobs:
+  container-test:
+    name: Container Test
+    permissions:
+      contents: read
+    uses: ministryofjustice/analytical-platform-github-actions/.github/workflows/reusable-container-test.yml@68ce2de03822a2ca9c6976e558331cd362271155 # v5.1.0
