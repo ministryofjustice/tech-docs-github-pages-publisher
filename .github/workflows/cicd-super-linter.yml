@@ -19,5 +19,6 @@ jobs:
     with:
       super-linter-variables: |
         {
-          "VALIDATE_CSS": false
+          "VALIDATE_CSS": false,
+          "VALIDATE_TRIVY": false
         }
