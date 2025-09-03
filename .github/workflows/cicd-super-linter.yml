@@ -1,36 +1,24 @@
 ---
-name: ♻️ Super-Linter
+name: ♻️ Super Linter
 
 on:
   pull_request:
     branches:
       - main
-    types:
-      - edited
-      - opened
-      - reopened
-      - synchronize
 
 permissions: {}
 
 jobs:
   super-linter:
-    name: Super-Linter
-    runs-on: ubuntu-latest
+    name: Super Linter
     permissions:
       contents: read
+      packages: read
       statuses: write
-    steps:
-      - name: Checkout
-        id: checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: Super-Linter
-        id: super_linter
-        uses: super-linter/super-linter/slim@12150456a73e248bdc94d0794898f94e23127c88 # v7.4.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_CSS: false
+    uses: ministryofjustice/analytical-platform-github-actions/.github/workflows/reusable-super-linter.yml@68ce2de03822a2ca9c6976e558331cd362271155 # v5.1.0
+    with:
+      super-linter-variables: |
+        {
+          "VALIDATE_CSS": false,
+          "VALIDATE_TRIVY": false
+        }
