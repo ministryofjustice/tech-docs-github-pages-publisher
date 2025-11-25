@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v5.2.0] - 2025-11-25
+
+### Changed
+
+- `docker.io/ruby` to `3.4.7-alpine3.22@sha256:cdb113e8110f2ed8c5e2e1ef4b02494e0243f8d6fe59e4c0348441437ded2aaa`
+
+- `bundler` to `2.7.2`
+
+- `govuk_tech_docs` to `5.2.0` ([CHANGELOG](https://github.com/alphagov/tech-docs-gem/blob/main/CHANGELOG.md#520))
+
 ## [v5.1.0] - 2025-09-02
 
 ### Changed
