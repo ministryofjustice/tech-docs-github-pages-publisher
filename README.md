@@ -33,16 +33,16 @@ make preview
 
 The base image is derived from [tech-docs-gem's](https://github.com/alphagov/tech-docs-gem) latest supported Ruby version, which can be found in their [test matrix](https://github.com/alphagov/tech-docs-gem/blob/main/.github/workflows/test.yaml#L17).
 
-As of 02/09/25, that version is [3.3.9](https://www.ruby-lang.org/en/news/2025/07/24/ruby-3-3-9-released/).
+As of 25/11/25, that version is [3.4.7](https://www.ruby-lang.org/en/news/2025/10/07/ruby-3-4-7-released/).
 
-Using 3.3.9, you can find the latest Alpine image by [searching Docker Hub](https://hub.docker.com/_/ruby/tags?name=3.3.9-alpine).
+Using 3.4.7, you can find the latest Alpine image by [searching Docker Hub](https://hub.docker.com/_/ruby/tags?name=3.4.7-alpine).
 
 To obtain the SHA, you can run:
 
 ```bash
-docker pull --platform linux/amd64 docker.io/ruby:3.3.9-alpine3.22
+docker pull --platform linux/amd64 docker.io/ruby:3.4.7-alpine3.22
 
-docker image inspect --format='{{ index .RepoDigests 0 }}' docker.io/ruby:3.3.9-alpine3.22
+docker image inspect --format='{{ index .RepoDigests 0 }}' docker.io/ruby:3.4.7-alpine3.22
 ```
 
 ### Gemfile and Gemfile.lock

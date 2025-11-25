@@ -24,7 +24,7 @@ commandTests:
   - name: "ruby"
     command: "ruby"
     args: ["--version"]
-    expectedOutput: ["ruby 3.3.9"]
+    expectedOutput: ["ruby 3.4.7"]
 
   - name: "git"
     command: "git"
