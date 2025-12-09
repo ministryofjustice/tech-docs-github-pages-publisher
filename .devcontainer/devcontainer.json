@@ -2,7 +2,7 @@
   "name": "tech-docs-github-pages-publisher",
   "image": "ghcr.io/ministryofjustice/devcontainer-base:latest",
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:": {},
     "ghcr.io/ministryofjustice/devcontainer-feature/container-structure-test:1": {},
     "ghcr.io/ministryofjustice/devcontainer-feature/static-analysis:1": {}
   },
