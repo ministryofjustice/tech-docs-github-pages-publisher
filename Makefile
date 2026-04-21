@@ -3,9 +3,6 @@
 IMAGE_NAME ?= ghcr.io/ministryofjustice/tech-docs-github-pages-publisher
 IMAGE_TAG  ?= local
 
-TRIVY_DB_REPOSITORY ?= public.ecr.aws/aquasecurity/trivy-db:2
-TRIVY_JAVA_DB_REPOSITORY ?= public.ecr.aws/aquasecurity/trivy-java-db:1
-
 build:
 	@ARCH=`uname --machine`; \
 	case $$ARCH in \
@@ -39,9 +36,6 @@ preview: build
 		--publish 4567:4567 \
 		$(IMAGE_NAME):$(IMAGE_TAG) \
 		/usr/local/bin/preview
-
-scan: build
-	trivy image --platform linux/amd64 --severity HIGH,CRITICAL $(IMAGE_NAME):$(IMAGE_TAG)
 
 copy-gemlock: build
 	docker create --name tech-docs-github-pages-publisher-tmp $(IMAGE_NAME):$(IMAGE_TAG)
