@@ -1,7 +1,7 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - Image does not run a web server
 #checkov:skip=CKV_DOCKER_3: USER not required        - Image does not run in production, it is a utility
 
-FROM docker.io/ruby:4.0.2-alpine3.22@sha256:dfdf1fb2086d07913c7c07ddf8336de149ed13b441b2173a9a4f93b99b4f761e
+FROM docker.io/ruby:3.4.9-alpine3.23@sha256:8a962e98ec8b999097accdf3bdc564c7a5f67360f4d418c0074e7fa49b148185
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="GitHub Community (github-community@digital.justice.gov.uk)" \
@@ -19,8 +19,8 @@ WORKDIR /opt/publisher
 RUN <<EOF
 apk --update-cache --no-cache add \
   build-base==0.5-r3 \
-  git==2.49.1-r0 \
-  nodejs==22.22.2-r0
+  git==2.52.0-r0 \
+  nodejs==24.14.1-r0
 
 gem install bundler --version "${BUNDLER_VERSION}"
 
