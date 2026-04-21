@@ -32,12 +32,12 @@ updates:
       default-days: 7
       exclude:
         - "ministryofjustice/action*"
-        - "ministryofjustice/data-platform-github-actions*"
+        - "ministryofjustice/analytical-platform-github-actions*"
     directory: "/"
     groups:
-      data-platform-github-actions:
+      analytical-platform-github-actions:
         patterns:
-          - "ministryofjustice/data-platform-github-actions*"
+          - "ministryofjustice/analytical-platform-github-actions*"
     open-pull-requests-limit: 15
     schedule:
       interval: "daily"
