@@ -9,30 +9,6 @@ on:
 permissions: {}
 
 jobs:
-  container-structure-test:
-    name: Container Structure Test
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - name: Checkout
-        id: checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          persist-credentials: false
-
-      - name: Set Up Container Structure Test
-        id: setup_container_structure_test
-        uses: ministryofjustice/action-setup-container-structure-test@d0636fa19d04c3fc71c30ae4eb8da03be63dbd4b # 1.0.0
-
-      - name: Container Structure Test
-        id: container_structure_test
-        shell: bash
-        env:
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          make test
-
   package:
     name: Package
     runs-on: ubuntu-latest

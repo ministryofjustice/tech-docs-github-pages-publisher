@@ -19,22 +19,22 @@ commandTests:
   - name: "alpine"
     command: "cat"
     args: ["/etc/alpine-release"]
-    expectedOutput: ["3.22"]
+    expectedOutput: ["3.23.4"]
 
   - name: "ruby"
     command: "ruby"
     args: ["--version"]
-    expectedOutput: ["ruby 3.4.7"]
+    expectedOutput: ["ruby 3.4.9"]
 
   - name: "git"
     command: "git"
     args: ["--version"]
-    expectedOutput: ["git version 2.49.1"]
+    expectedOutput: ["git version 2.52.0"]
 
   - name: "node"
     command: "node"
     args: ["--version"]
-    expectedOutput: ["v22.16.0"]
+    expectedOutput: ["v24.14.1"]
 
 fileExistenceTests:
   - name: "/opt/publisher/config.rb"
