@@ -1,27 +1,14 @@
 {
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {
-      "version": "2.12.4",
-      "resolved": "ghcr.io/devcontainers/features/docker-in-docker@sha256:7f32d985aac6929b4f37cf8a0bdb9196473e9e192281a3d708207a70633f83df",
-      "integrity": "sha256:7f32d985aac6929b4f37cf8a0bdb9196473e9e192281a3d708207a70633f83df"
-    },
     "ghcr.io/devcontainers/features/docker-in-docker:": {
-      "version": "2.13.0",
-      "resolved": "ghcr.io/devcontainers/features/docker-in-docker@sha256:ac0a882e936ba6275d7f4ed5ebfc09e4ddca8cbcaeaad18b412beacddeb2fa91",
-      "integrity": "sha256:ac0a882e936ba6275d7f4ed5ebfc09e4ddca8cbcaeaad18b412beacddeb2fa91"
+      "version": "2.16.1",
+      "resolved": "ghcr.io/devcontainers/features/docker-in-docker@sha256:ce078b7bf7d9ef3bcb9813b32103795d8d72172446890b64772cbe1dec6baafd",
+      "integrity": "sha256:ce078b7bf7d9ef3bcb9813b32103795d8d72172446890b64772cbe1dec6baafd"
     },
-    "ghcr.io/ministryofjustice/devcontainer-feature/container-structure-test:1": {
+    "ghcr.io/ministryofjustice/devcontainer-feature/astral:": {
       "version": "1.0.0",
-      "resolved": "ghcr.io/ministryofjustice/devcontainer-feature/container-structure-test@sha256:19eb30f9eb327b667be2002757d55381de87cdb5a79a6e37d293369fe8ad01ad",
-      "integrity": "sha256:19eb30f9eb327b667be2002757d55381de87cdb5a79a6e37d293369fe8ad01ad",
-      "dependsOn": [
-        "ghcr.io/devcontainers/features/docker-in-docker:2"
-      ]
-    },
-    "ghcr.io/ministryofjustice/devcontainer-feature/static-analysis:1": {
-      "version": "1.0.0",
-      "resolved": "ghcr.io/ministryofjustice/devcontainer-feature/static-analysis@sha256:e81d52725655c8ffb861605feac7ad155b447d51af65f6c3a03cab32d59f1e16",
-      "integrity": "sha256:e81d52725655c8ffb861605feac7ad155b447d51af65f6c3a03cab32d59f1e16"
+      "resolved": "ghcr.io/ministryofjustice/devcontainer-feature/astral@sha256:a6df118c6475e79fe15e63b815a5df591a24b0d25517ea941114cb6bee1af9a8",
+      "integrity": "sha256:a6df118c6475e79fe15e63b815a5df591a24b0d25517ea941114cb6bee1af9a8"
     }
   }
 }
