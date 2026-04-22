@@ -19,6 +19,7 @@ jobs:
     with:
       super-linter-variables: |
         {
+          "ENABLE_GITHUB_PULL_REQUEST_SUMMARY_COMMENT": false,
           "VALIDATE_CSS": false,
           "VALIDATE_TRIVY": false
         }
